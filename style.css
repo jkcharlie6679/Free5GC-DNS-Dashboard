@@ -19,7 +19,7 @@ html, body{
 }
 
 header{
-    background-color: #ccc;
+    background-color: #c6d9f0;
     display: flex;
     font-size: 0;
     max-width: 100%;
@@ -65,8 +65,8 @@ header .col{
     max-width: 15%;
 }
 
-#History_State{
-    color: #bbbd42;
+#Current_State{
+    color: #7a9dd9;
 }
 
 .sidebar nav{
@@ -74,7 +74,7 @@ header .col{
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: #666;
+    background-color: #fff;
 }
 
 .sidebar li{
@@ -84,63 +84,99 @@ header .col{
 .sidebar nav a{
     text-decoration: none;
     font-size: 32px;
-    color: #eee;
+    color: #000;
 }
 
 .main{
     max-width: 85%;
     flex-grow: 1;
-    background-color: #555;
+    background-color: #eff2f5;
+    display: flex;
+}
+
+.main .row{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    min-width: 50%;
+    padding: 20px;
+}
+
+.main .cell {
     display: flex;
     flex-direction: column;
-    padding: 5%;
 }
 
-.main .row *{
-    align-self:center;
-    vertical-align: middle;
-}
-.main .title{
+.main .cell .don {
     display: flex;
-    color: #fff;
-    padding: 10px;
-    font-size: 36px;
-    justify-content: center;
-    background-color: #7595ac;
-}
-
-.main .option{
-    display: flex;
-    color: #fff;
-    padding: 10px 50px;
-    font-size: 24px;
-    justify-content: space-between;
-    background-color: #64849b;
-}
-
-.main .option .search-btn{
-    width: 3%;
-}
-
-.main .option img{
-    vertical-align: middle;
+    flex-direction: column;
+    height: 50%;
+    max-height: 50%;
+    padding: 20px;
     width: 100%;
-    padding: 5px;
+    max-width: 100%;
 }
 
-.main .data{
+.main .cell .title {
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    background-color: #b3c8e4;
+}
+
+.main .cell .list{
+    flex-grow: 1;
+}
+
+.main .cell .list table{
+    width: 100%;
+    background-color: #f0f4f9;
+}
+
+.main .cell .list td, th{
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #aaa;
+}
+
+
+.main .status{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    overflow: scroll;
-    justify-content: flex-start;
-    flex-grow: 1;
-    background-color: #7595ac;
+    padding: 20px;
+    width: 100%;
 }
+
+.main .status .title {
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    background-color: #b3c8e4;
+}
+
+.main .status .selector {
+    justify-content: center;
+    padding: 10px;
+    background-color: #f0f4f9;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main .status .selector *{
+    margin: 5px;
+    padding: 1px;
+}
+
+.main .status .list{
+    flex-grow: 1;
+    background-color: #f0f4f9;
+}
+
+
 
 .footer{
     width: 100%;
-    background-color: #bbb;
+    background-color: #cfdbec;
     font-size: 0px;
     height: 30px;
     margin-bottom: -30px;

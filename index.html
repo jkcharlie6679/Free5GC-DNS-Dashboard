@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resetcss.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
     <title>Free5GC Dashboard</title>
 </head>
 
@@ -54,27 +54,91 @@
             </div>
             <div class="main">
                 <div class="row cell">
-                    <div class="col">
-                        <img src="./images/cell_station.png" alt="cell station">
+                    <div class="don">
+                        <div class="title">
+                            Domain1
+                        </div>
+                        <div class="list">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Cell</th>
+                                        <th>Online#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Cell_1</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Cell_2</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
                     </div>
-                    <div class="col">
-                        <img src="./images/cell_station.png" alt="cell station">
-                    </div>
-                    <div class="col">
-                        <img src="./images/cell_station.png" alt="cell station">
+                    <div class="don">
+                        <div class="title">
+                            Domain2
+                        </div>
+                        <div class="list">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Cell</th>
+                                        <th>Online#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Cell_3</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="row user">
-                    <div class="list">
-                        <div class="col title">
+                    <div class="status">
+                        <div class="title">
                             User Connection Status
                         </div>
-                        <div class="col status">
+                        <div class="selector">
+                            <div class="domain_select">
+                                <label for="domain">Domain</label>
+                                <select name="domain_select" id="domain">
+                                    <option value="0">Select Domain</option>
+                                    <option value="1">Domain 1</option>
+                                    <option value="2">Domain 2</option>
+                                </select>
+                            </div>
+                            <div class="cell_select">
+                                <label for="Cell">Cell</label>
+                                <select name="cell_select" id="domain">
+                                    <option value="0">Select Cell</option>
+                                    <option value="1">Domain 1</option>
+                                    <option value="2">Domain 2</option>
+                                    <option value="3">Domain 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="list">
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="footer">
             <div class="row">

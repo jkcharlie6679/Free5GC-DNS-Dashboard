@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./../resetcss.css">
-    <link rel="stylesheet" href="./System_Log.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Free5GC Dashboard</title>
 </head>
 
@@ -63,17 +63,31 @@
                         </button>
                     </div>
                     <div class="time">
-                        <p>Date
-                            <input type="date">
-                            -
-                            <input type="date">
-                        </p>
+                        <input type="date">
+                        <input type="date">
                     </div>
                     <div class="search-btn">
                         <button><img src="./../images/search.png" alt="search"></button>
                     </div>
                 </div>
-                <div class="row data"></div>
+                <div class="row list">
+                    <div class="title">
+                        Log
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Type</th>
+                                <th>Time</th>
+                                <th>Payload</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -84,6 +98,11 @@
                 </div>
             </div>
         </div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="./script.js"></script>
     </div>
 
 </body>

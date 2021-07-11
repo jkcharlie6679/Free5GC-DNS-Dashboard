@@ -19,7 +19,7 @@ html, body{
 }
 
 header{
-    background-color: #ccc;
+    background-color: #c6d9f0;
     display: flex;
     font-size: 0;
     max-width: 100%;
@@ -65,8 +65,8 @@ header .col{
     max-width: 15%;
 }
 
-#Current_State{
-    color: #bbbd42;
+#System_Log{
+    color: #7a9dd9;
 }
 
 .sidebar nav{
@@ -74,7 +74,7 @@ header .col{
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: #666;
+    background-color: #fff;
 }
 
 .sidebar li{
@@ -84,70 +84,79 @@ header .col{
 .sidebar nav a{
     text-decoration: none;
     font-size: 32px;
-    color: #eee;
+    color: #000;
 }
 
 .main{
     max-width: 85%;
     flex-grow: 1;
-    background-color: #555;
+    background-color: #eff2f5;
     display: flex;
+    flex-direction: column;
+    padding: 3% 5%;
 }
 
-.main .row{
+.main .row *{
+    align-self:center;
+    vertical-align: middle;
+}
+
+.main .option{
+    background-color: #eff2f5;
     display: flex;
-    flex-wrap: wrap;
-    width: 50%;
-    min-width: 50%;
+    color: #000;
+    font-size: 24px;
+    justify-content: space-between;
     padding: 20px;
 }
 
-.main .cell .col{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.main .option .btn{
+    background-color: #fff;
+    border: none;
+    /* height: 36px; */
+    width: 300px;
+    padding: 10px;
+    font-size: 24px;
 }
 
-.main .cell img{
-    width: 70%;
-    vertical-align: top;
-    padding: 20px 0 ;
+.main .option img{
+    width: 100%;
+    padding: 3px;
 }
 
-.main .list{
-    padding: 30px;
-    flex: auto;
-    background-color: #7595ac;
+.main .option .search-btn{
+    width: 3.5%;
+}
+
+.main .list {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    max-height: 100%;
-    margin: 0 80px;
-    max-width: 100%;
 }
 
 .main .list .title{
-color: #fff;
-background-color: #aaa;
-width: 100%;
-padding: 20px;
-text-align: center;
-font-size: 30px;
+    background-color: #b3c8e4;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 36px;
 }
 
-.main .list .status{
-    text-align: center;
-    font-size: 30px;
-    width: 80%;
-    flex-grow: 1;
-    overflow: auto;
+.main .list table{
+    overflow: scroll;
+    width: 100%;
+    font-size: 24px;
+}
+
+.main .list th, td{
+    border: 1px solid #aaa;
+    padding: 5px;
 }
 
 .footer{
     width: 100%;
-    background-color: #bbb;
+    background-color: #cfdbec;
     font-size: 0px;
     height: 30px;
     margin-bottom: -30px;
