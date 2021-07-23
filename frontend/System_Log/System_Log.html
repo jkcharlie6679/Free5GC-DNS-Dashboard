@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./../resetcss.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" rel="stylesheet" />
     <link rel="stylesheet" href="./style.css">
     <title>Free5GC Dashboard</title>
 </head>
@@ -19,20 +20,36 @@
                 </a>
             </div>
             <div class="row">
-                <div class="col">DNS1: </div>
-                <div class="col">DNS2: </div>
+                <div class="col">DNS1:&nbsp;
+                    <p id="dns1_dns"></p>
+                </div>
+                <div class="col">DNS2:&nbsp;
+                    <p id="dns2_dns"></p>
+                </div>
             </div>
             <div class="row">
-                <div class="col">CPU Usage: </div>
-                <div class="col">CPU Usage: </div>
+                <div class="col">CPU Usage:&nbsp;
+                    <p id="dns1_cpu"></p>
+                </div>
+                <div class="col">CPU Usage:&nbsp;
+                    <p id="dns2_cpu"></p>
+                </div>
             </div>
             <div class="row">
-                <div class="col">Memory Usage: </div>
-                <div class="col">Memory Usage: </div>
+                <div class="col">Memory Usage:&nbsp;
+                    <p id="dns1_mem"></p>
+                </div>
+                <div class="col">Memory Usage:&nbsp;
+                    <p id="dns2_mem"></p>
+                </div>
             </div>
             <div class="row">
-                <div class="col">Disk Space: </div>
-                <div class="col">Disk Space: </div>
+                <div class="col">Disk Space:&nbsp;
+                    <p id="dns1_disk"></p>
+                </div>
+                <div class="col">Disk Space:&nbsp;
+                    <p id="dns2_disk"></p>
+                </div>
             </div>
         </header>
 
@@ -63,30 +80,29 @@
                         </button>
                     </div>
                     <div class="time">
-                        <input type="date">
-                        <input type="date">
+                        <input id="Start_time" type="datetime-local">
+                        <input id="End_time" type="datetime-local">
                     </div>
                     <div class="search-btn">
-                        <button><img src="./../images/search.png" alt="search"></button>
+                        <button id="search-btn"><img src="./../images/search.png" alt="search"></button>
                     </div>
                 </div>
+                <div class="title">
+                    Log
+                </div>
                 <div class="row list">
-                    <div class="title">
-                        Log
-                    </div>
+
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Index</th>
-                                <th>Type</th>
-                                <th>Time</th>
-                                <th>Payload</th>
-                            </tr>
+                        <thead id="thead">
+
                         </thead>
-                        <tbody>
+                        <tbody id="tbody">
 
                         </tbody>
                     </table>
+                </div>
+                <div class="row page" id="page">
+
                 </div>
             </div>
         </div>
@@ -102,6 +118,7 @@
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
         <script src="./script.js"></script>
     </div>
 

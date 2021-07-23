@@ -1,14 +1,15 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-html, body{
+html,
+body {
     height: 100%;
 }
 
-.wrapper{
+.wrapper {
     position: absolute;
     padding: 60px 0 30px 0;
     top: 0;
@@ -18,7 +19,7 @@ html, body{
     max-width: 100%;
 }
 
-header{
+header {
     background-color: #c6d9f0;
     display: flex;
     font-size: 0;
@@ -28,7 +29,7 @@ header{
     margin-top: -60px;
 }
 
-.logo a{
+.logo a {
     display: inline-block;
     width: 150px;
     height: 50px;
@@ -42,7 +43,7 @@ header{
     margin: 0 50px;
 }
 
-header .row{
+header .row {
     font-size: 18px;
     display: flex;
     flex-direction: column;
@@ -51,25 +52,21 @@ header .row{
     margin-right: 30px;
 }
 
-header .col{
+header .col {
     margin: auto 0;
+    display: flex;
 }
 
-.container{
+.container {
     display: flex;
     height: 100%;
 }
 
-.sidebar{
-    width: 20%;
-    max-width: 15%;
-}
-
-#History_State{
+#System_Log {
     color: #7a9dd9;
 }
 
-.sidebar nav{
+.sidebar nav {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -77,79 +74,113 @@ header .col{
     background-color: #fff;
 }
 
-.sidebar li{
+.sidebar li {
     padding: 20px;
 }
 
-.sidebar nav a{
+.sidebar nav a {
     text-decoration: none;
     font-size: 32px;
     color: #000;
 }
 
-.main{
-    max-width: 85%;
+.main {
     flex-grow: 1;
     background-color: #eff2f5;
     display: flex;
     flex-direction: column;
-    padding: 5%;
+    padding: 3% 5%;
 }
 
-.main .row *{
-    align-self:center;
+.main .row * {
+    align-self: center;
     vertical-align: middle;
 }
-.main .title{
-    display: flex;
-    color: #000;
-    padding: 10px;
-    font-size: 36px;
-    justify-content: center;
-    background-color: #b3c8e4;
-}
 
-.main .option{
+.main .option {
+    background-color: #eff2f5;
     display: flex;
     color: #000;
-    padding: 10px 50px;
-    font-size: 24px;
+    font-size: 20px;
     justify-content: space-between;
-    background-color: #f0f4f9;
+    padding: 5px;
 }
 
-.main .option *{
-    text-align: center;
+.main .option * {
+    display: flex;
 }
 
-.main .option .search-btn{
+.main .option .time * {
+    margin: 0 5px;
+}
+
+.main .option .btn {
+    background-color: #fff;
+    border: none;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 24px;
+}
+
+.main .option img {
+    width: 30px;
+    padding: 2px;
+}
+
+.main .option .search-btn {
     width: 30px;
 }
 
-.main .option img{
-    vertical-align: middle;
+.main .title {
+    background-color: #b3c8e4;
     width: 100%;
-    padding: 5px;
+    max-width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 36px;
 }
 
-.main .data{
+.main .list {
     flex-grow: 1;
-    background-color: #f0f4f9;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 5px;
     overflow: scroll;
 }
 
-.main .data table{
-    margin: 20px;
+.main .list table {
     width: 100%;
 }
 
-.main .data th, td{
+.main .list th,
+td {
     border: 1px solid #aaa;
-    text-align: center;
     padding: 5px;
+    text-align: center;
 }
 
-.footer{
+.main .page {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.paginationjs.custom-paginationjs {
+    font-size: 20px
+}
+
+.paginationjs.custom-paginationjs .paginationjs-pages li>a {
+    min-width: 36px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 20px
+}
+
+.paginationjs.custom-paginationjs .paginationjs-pages li.active>a {
+    height: 36px;
+    line-height: 36px
+}
+
+.footer {
     width: 100%;
     background-color: #cfdbec;
     font-size: 0px;
@@ -157,17 +188,15 @@ header .col{
     margin-bottom: -30px;
 }
 
-.footer .row{
+.footer .row {
     display: flex;
 }
 
-.footer .col{
+.footer .col {
     box-sizing: border-box;
     height: 30px;
     font-size: 14px;
     padding: 8px;
 }
 
-@media only screen and (max-width: 768px) {
-
-}
+@media only screen and (max-width: 768px) {}

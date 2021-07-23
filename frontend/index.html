@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resetcss.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
     <title>Free5GC Dashboard</title>
 </head>
@@ -19,20 +20,36 @@
                 </a>
             </div>
             <div class="row">
-                <div class="col">DNS1: </div>
-                <div class="col">DNS2: </div>
+                <div class="col">DNS1:&nbsp;
+                    <p id="dns1_dns"></p>
+                </div>
+                <div class="col">DNS2:&nbsp;
+                    <p id="dns2_dns"></p>
+                </div>
             </div>
             <div class="row">
-                <div class="col">CPU Usage: </div>
-                <div class="col">CPU Usage: </div>
+                <div class="col">CPU Usage:&nbsp;
+                    <p id="dns1_cpu"></p>
+                </div>
+                <div class="col">CPU Usage:&nbsp;
+                    <p id="dns2_cpu"></p>
+                </div>
             </div>
             <div class="row">
-                <div class="col">Memory Usage: </div>
-                <div class="col">Memory Usage: </div>
+                <div class="col">Memory Usage:&nbsp;
+                    <p id="dns1_mem"></p>
+                </div>
+                <div class="col">Memory Usage:&nbsp;
+                    <p id="dns2_mem"></p>
+                </div>
             </div>
             <div class="row">
-                <div class="col">Disk Space: </div>
-                <div class="col">Disk Space: </div>
+                <div class="col">Disk Space:&nbsp;
+                    <p id="dns1_disk"></p>
+                </div>
+                <div class="col">Disk Space:&nbsp;
+                    <p id="dns2_disk"></p>
+                </div>
             </div>
         </header>
 
@@ -54,7 +71,7 @@
             </div>
             <div class="main">
                 <div class="row cell">
-                    <div class="don">
+                    <div class="domain">
                         <div class="title">
                             Domain1
                         </div>
@@ -71,19 +88,19 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Cell_1</td>
-                                        <td>0</td>
+                                        <td id="cell_1">0</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Cell_2</td>
-                                        <td>0</td>
+                                        <td id="cell_2">0</td>
                                     </tr>
                                 </tbody>
 
                             </table>
                         </div>
                     </div>
-                    <div class="don">
+                    <div class="domain">
                         <div class="title">
                             Domain2
                         </div>
@@ -100,7 +117,7 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Cell_3</td>
-                                        <td>0</td>
+                                        <td id="cell_3">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -108,32 +125,29 @@
                     </div>
                 </div>
                 <div class="row user">
-                    <div class="status">
-                        <div class="title">
-                            User Connection Status
-                        </div>
-                        <div class="selector">
-                            <div class="domain_select">
-                                <label for="domain">Domain</label>
-                                <select name="domain_select" id="domain">
-                                    <option value="0">Select Domain</option>
-                                    <option value="1">Domain 1</option>
-                                    <option value="2">Domain 2</option>
+                    <div class="title">
+                        User Connection Status
+                    </div>
+                    <div class="selector">
+                        <div class="domain_select">
+                            <label for="domain">Domain</label>
+                            <select name="domain_select" id="Domain_ID">
+                                    <option value="">Select Domain</option>
+                                    <option value="Domain_1">Domain 1</option>
+                                    <option value="Domain_2">Domain 2</option>
                                 </select>
-                            </div>
-                            <div class="cell_select">
-                                <label for="Cell">Cell</label>
-                                <select name="cell_select" id="domain">
-                                    <option value="0">Select Cell</option>
-                                    <option value="1">Domain 1</option>
-                                    <option value="2">Domain 2</option>
-                                    <option value="3">Domain 3</option>
+                        </div>
+                        <div class="cell_select">
+                            <label for="Cell">Cell</label>
+                            <select name="cell_select" id="Cell_ID">
+                                    <option value="">Select Cell</option>
+                                    <option value="Cell_1">Cell 1</option>
+                                    <option value="Cell_2">Cell 2</option>
+                                    <option value="Cell_3">Cell 3</option>
                                 </select>
-                            </div>
                         </div>
-                        <div class="list">
-
-                        </div>
+                    </div>
+                    <div class="list" id="list">
                     </div>
                 </div>
             </div>
@@ -148,7 +162,9 @@
             </div>
         </div>
     </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
