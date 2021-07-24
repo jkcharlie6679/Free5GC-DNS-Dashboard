@@ -95,6 +95,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "GET",
                     url: url,
+                    // beforesend: $("#tbody").html('Loading'),
                     success: function(response) {
                         done(JSON.parse(response).items);
                     }

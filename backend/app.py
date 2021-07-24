@@ -11,6 +11,8 @@ cfgpath = os.path.abspath('.') + "/config.ini"
 config = configparser.ConfigParser()
 config.read(cfgpath)
 
+tz_8 = datetime.timezone(datetime.timedelta(hours=8))
+
 @app.route('/resource_usage', methods = ['GET'])
 @cross_origin()
 def resource_usage():
@@ -149,7 +151,7 @@ def current():
         return_json["items"] = []
         for raw in sql_data:
             items_json ={}
-            items_json["Datetime"] = str(raw[0])
+            items_json["Datetime"] = str(raw[0].astimezone(tz_8).replace(tzinfo=None))
             items_json["DNS_ID"] = raw[1]
             items_json["Domain_ID"] = raw[2]
             items_json["Cell_ID"] = raw[3]
@@ -201,7 +203,7 @@ def call_flow():
         return_json["items"] = []
         for raw in sql_data:
             items_json = {}
-            items_json["Datetime"] = str(raw[0])
+            items_json["Datetime"] = str(raw[0].astimezone(tz_8).replace(tzinfo=None))
             items_json["Type"] = raw[1]
             items_json["Payload"] = raw[2]
             return_json["items"].append(items_json)
@@ -249,7 +251,7 @@ def system_log():
         return_json["items"] = []
         for raw in sql_data:
             items_json = {}
-            items_json["Datetime"] = str(raw[0])
+            items_json["Datetime"] = str(raw[0].astimezone(tz_8).replace(tzinfo=None))
             items_json["DNS_env_info"] = raw[1]
             items_json["CPU_Usage"] = raw[2]
             items_json["Memory_Usage"] = raw[3]
@@ -279,10 +281,11 @@ def history():
     pg.close()
     return_json["amount"] = len(sql_data)
     return_json["items"] = []
+    
     for raw in sql_data:
         items_json = {}
-        items_json["Start_time"] = str(raw[0])
-        items_json["End_time"] = str(raw[1])
+        items_json["Start_time"] = str(raw[0].astimezone(tz_8).replace(tzinfo=None))
+        items_json["End_time"] = str(raw[1].astimezone(tz_8).replace(tzinfo=None))
         items_json["DNS_ID"] = raw[2]
         items_json["Domain_ID"] = raw[3]
         items_json["Cell_ID"] = raw[4]
