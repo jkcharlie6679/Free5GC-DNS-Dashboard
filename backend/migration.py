@@ -73,10 +73,8 @@ def create_system_log():
     pg.close()
     print("Success create system_log")
 
-# create_current()
-# create_history()
-# create_call_flow()
-# create_system_log()
+create_current()
+create_history()
+create_call_flow()
+create_system_log()
 
-pg = psycopg2.connect(database = config['database']['database'],host = config['database']['host'], user = config['database']['user'], password = config['database']['password'], port = config['database']['port'])
-pg.close()
