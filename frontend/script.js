@@ -15,7 +15,7 @@ $(document).ready(function() {
     }
 
     function get_cell() {
-        $.get("http://127.0.0.1:5000/cell_amount", function(data, status) {
+        $.get("http://140.118.121.110:5534/cell_amount", function(data, status) {
             $('#cell_1').text(JSON.parse(data).Cell_1)
             $('#cell_2').text(JSON.parse(data).Cell_2)
             $('#cell_3').text(JSON.parse(data).Cell_3)
@@ -23,7 +23,7 @@ $(document).ready(function() {
     }
 
     function get_resource() {
-        $.get("http://127.0.0.1:5000/resource_usage", function(data, status) {
+        $.get("http://140.118.121.110:5534/resource_usage", function(data, status) {
             $('#dns1_dns').text(JSON.parse(data)[0].DNS_ID)
             $('#dns1_cpu').text(JSON.parse(data)[0].CPU_Usage + "%")
             $('#dns1_mem').text(JSON.parse(data)[0].Memory_Usage + "%")
@@ -38,7 +38,7 @@ $(document).ready(function() {
     function get_detail() {
         var dataHtml = '';
         $.ajax({
-            url: "http://127.0.0.1:5000/current?Domain_ID=" + $("#Domain_ID").val() + "&Cell_ID=" + $("#Cell_ID").val(),
+            url: "http://140.118.121.110:5534/current?Domain_ID=" + $("#Domain_ID").val() + "&Cell_ID=" + $("#Cell_ID").val(),
             context: document.body
         }).done(function(body) {
 

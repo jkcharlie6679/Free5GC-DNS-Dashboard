@@ -169,6 +169,8 @@ th {
     flex-direction: column;
     flex-grow: 1;
     background-color: #f0f4f9;
+    max-width: 100%;
+    overflow: scroll;
 }
 
 .main .user .list .data {
@@ -176,6 +178,7 @@ th {
     padding: 10px;
     border: 1px solid #000;
     margin: 10px;
+    /* position: relative; */
 }
 
 .main .user .list .data .img {

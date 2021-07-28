@@ -25,13 +25,13 @@ $(document).ready(function() {
         var End_time = new Date(Date.now() + 8 * 3600000).toISOString().substr(0, 16);
         $("#Start_time").val(Start_time)
         $("#End_time").val(End_time)
-        var url = "http://127.0.0.1:5000/history?Start_time=" + Start_time + "%2B00:00&End_time=" + End_time + "%2B00:00&Cell_ID=";
+        var url = "http://140.118.121.110:5534/history?Start_time=" + Start_time + "%2B00:00&End_time=" + End_time + "%2B00:00&Cell_ID=";
 
         page_history(url)
     }
 
     function get_resource() {
-        $.get("http://127.0.0.1:5000/resource_usage", function(data, status) {
+        $.get("http://140.118.121.110:5534/resource_usage", function(data, status) {
             $('#dns1_dns').text(JSON.parse(data)[0].DNS_ID)
             $('#dns1_cpu').text(JSON.parse(data)[0].CPU_Usage + "%")
             $('#dns1_mem').text(JSON.parse(data)[0].Memory_Usage + "%")
