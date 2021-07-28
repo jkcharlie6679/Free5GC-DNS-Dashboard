@@ -137,14 +137,14 @@ header .col {
 }
 
 .main .data table {
-    width: 100%;
+    min-width: 100%;
 }
 
 .main .data th,
 td {
     border: 1px solid #aaa;
     text-align: center;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 .main .page {

@@ -340,15 +340,16 @@ def history():
             raw[0].astimezone(tz_8).replace(tzinfo=None))
         items_json["End_time"] = str(
             raw[1].astimezone(tz_8).replace(tzinfo=None))
-        items_json["Status"] = raw[2]
-        items_json["DNS_ID"] = raw[3]
-        items_json["Domain_ID"] = raw[4]
-        items_json["Cell_ID"] = raw[5]
-        items_json["Device_ID"] = raw[6]
-        items_json["IMEI"] = raw[7]
-        items_json["IPv4"] = raw[8]
-        items_json["IPv6"] = raw[9]
-        items_json["FQDN"] = raw[10]
+        items_json["Previous"] = raw[2]
+        items_json["Next"] = raw[3]
+        items_json["DNS_ID"] = raw[4]
+        items_json["Domain_ID"] = raw[5]
+        items_json["Cell_ID"] = raw[6]
+        items_json["Device_ID"] = raw[7]
+        items_json["IMEI"] = raw[8]
+        items_json["IPv4"] = raw[9]
+        items_json["IPv6"] = raw[10]
+        items_json["FQDN"] = raw[11]
         return_json["items"].append(items_json)
     return json.dumps(return_json), status.HTTP_200_OK
 

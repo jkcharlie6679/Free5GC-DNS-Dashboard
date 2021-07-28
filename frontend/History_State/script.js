@@ -66,6 +66,8 @@ $(document).ready(function() {
                     dataHtml += '<tr><td>' + index + '</td>';
                     dataHtml += '<td>' + item.Start_time + '</td>';
                     dataHtml += '<td>' + item.End_time + '</td>';
+                    dataHtml += '<td>' + item.Previous + '</td>';
+                    dataHtml += '<td>' + item.Next + '</td>';
                     dataHtml += '<td>' + item.DNS_ID + '</td>';
                     dataHtml += '<td>' + item.Domain_ID + '</td>';
                     dataHtml += '<td>' + item.Cell_ID + '</td>';
