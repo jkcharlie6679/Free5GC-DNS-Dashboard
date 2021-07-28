@@ -8,7 +8,7 @@ $(document).ready(function() {
         var Start_time = $("#Start_time").val();
         var End_time = $("#End_time").val();
         var Cell_ID = $("#Cell_ID_select").val();
-        var url = "http://127.0.0.1:5000/history?Start_time=" + Start_time + "%2B00:00&End_time=" + End_time + "%2B00:00&Cell_ID=" + Cell_ID;
+        var url = "http://140.118.121.110:5534/history?Start_time=" + Start_time + "%2B00:00&End_time=" + End_time + "%2B00:00&Cell_ID=" + Cell_ID;
 
         page_history(url)
     })

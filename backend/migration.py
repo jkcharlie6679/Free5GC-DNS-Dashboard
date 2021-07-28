@@ -31,6 +31,8 @@ def create_history():
     pg_cur.execute(""" CREATE TABLE IF NOT EXISTS history(
                         "Start_time" TIMESTAMP WITH TIME ZONE NOT NULL,
                         "End_time" TIMESTAMP WITH TIME ZONE,
+                        "Previous" TEXT NOT NULL,
+                        "Next" TEXT,
                         "DNS_ID" TEXT NOT NULL,
                         "Domain_ID" TEXT NOT NULL,
                         "Cell_ID" TEXT NOT NULL,
