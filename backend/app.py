@@ -58,7 +58,6 @@ def current():
             return_json["message"] = "Missing " + str(error).replace("'", '')
             return json.dumps(return_json), status.HTTP_400_BAD_REQUEST
         sql_data = pg_cur.fetchall()
-        print(sql_data)
         if len(sql_data) == 1:
             try:
                 pg_cur.execute("""UPDATE current SET "Start_time" = '{}',
@@ -105,6 +104,9 @@ def current():
                 return_json["message"] = "Missing " + \
                     str(error).replace("'", '')
                 return json.dumps(return_json), status.HTTP_400_BAD_REQUEST
+            pg.close()
+            return_json["message"] = "Update success"
+            return json.dumps(return_json), status.HTTP_200_OK
         else:
             try:
                 pg_cur.execute("""INSERT INTO current("Start_time", "DNS_ID", "Domain_ID", "Cell_ID", "Device_ID", "IMEI", "IPv4", "IPv6", "FQDN")
@@ -139,9 +141,9 @@ def current():
                     str(error).replace("'", '')
                 return json.dumps(return_json), status.HTTP_400_BAD_REQUEST
 
-        pg.close()
-        return_json["message"] = "Create success"
-        return json.dumps(return_json), status.HTTP_200_OK
+            pg.close()
+            return_json["message"] = "Create success"
+            return json.dumps(return_json), status.HTTP_201_CREATED
     elif request.method == 'GET':
         Domain_ID = request.args.get('Domain_ID')
         Cell_ID = request.args.get('Cell_ID')
@@ -186,24 +188,28 @@ def current():
                               user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
         return_json = {}
         pg_cur = pg.cursor()
-
         pg_cur.execute(
                 """SELECT * FROM current WHERE "IMEI" = '{}'""".format(IMEI))
         sql_data = pg_cur.fetchall()
         
-        pg_cur.execute(
-            """DELETE FROM current WHERE "IMEI" = '{}'""".format(IMEI))
-        pg.commit()
+        if len(sql_data) != 0:
+            pg_cur.execute(
+                """DELETE FROM current WHERE "IMEI" = '{}'""".format(IMEI))
+            pg.commit()
 
-        pg_cur.execute("""UPDATE history SET "End_time" = '{}', "Next" = '{}' WHERE "Start_time" = '{}';"""
-                       .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
-                               "Get offline",
-                               sql_data[0][0]))
-        pg.commit()
+            pg_cur.execute("""UPDATE history SET "End_time" = '{}', "Next" = '{}' WHERE "Start_time" = '{}';"""
+                        .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
+                                "Get offline",
+                                sql_data[0][0]))
+            pg.commit()
 
-        pg.close()
-        return_json["message"] = "Delete success"
-        return json.dumps(return_json), status.HTTP_200_OK
+            pg.close()
+            return_json["message"] = "Delete success"
+            return json.dumps(return_json), status.HTTP_200_OK
+        else:
+            pg.close()
+            return_json["message"] = "Error IMEI"
+            return json.dumps(return_json), status.HTTP_400_BAD_REQUEST
 
 
 @app.route('/call_flow_log', methods=['POST', 'GET'])
