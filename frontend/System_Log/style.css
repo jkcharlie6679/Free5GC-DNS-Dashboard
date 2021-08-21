@@ -1,6 +1,4 @@
 * {
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
 }
 
@@ -19,12 +17,13 @@ body {
     max-width: 100%;
 }
 
+/* Header */
+
 header {
+    position: absolute;
+    width: 100%;
     background-color: #c6d9f0;
     display: flex;
-    font-size: 0;
-    max-width: 100%;
-    align-items: center;
     height: 60px;
     margin-top: -60px;
 }
@@ -33,23 +32,15 @@ header {
     display: inline-block;
     width: 150px;
     height: 50px;
-    margin-right: 20px;
-}
-
-.logo img {
-    vertical-align: middle;
-    height: 50px;
-    padding: 5px;
-    margin: 0 50px;
+    margin: 5px;
 }
 
 header .row {
     font-size: 18px;
     display: flex;
     flex-direction: column;
-    height: 50px;
-    width: 20%;
-    margin-right: 30px;
+    align-content: space-between;
+    margin-right: auto;
 }
 
 header .col {
@@ -57,20 +48,28 @@ header .col {
     display: flex;
 }
 
+.logo img {
+    position: absolute;
+    vertical-align: middle;
+    height: 50px;
+    padding: 5px;
+    margin: 0 50px;
+}
+
+/* Container*/
+
 .container {
     display: flex;
     height: 100%;
 }
+
+/* Sidebar */
 
 #System_Log {
     color: #7a9dd9;
 }
 
 .sidebar nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
     background-color: #fff;
 }
 
@@ -81,37 +80,30 @@ header .col {
 .sidebar nav a {
     text-decoration: none;
     font-size: 32px;
+    white-space: nowrap;
     color: #000;
 }
+
+/* Main */
 
 .main {
     flex-grow: 1;
     background-color: #eff2f5;
     display: flex;
     flex-direction: column;
-    padding: 3% 5%;
+    padding: 40px;
+    overflow-x: hidden;
 }
 
-.main .row * {
-    align-self: center;
-    vertical-align: middle;
-}
+/* Select Bar */
 
 .main .option {
     background-color: #eff2f5;
     display: flex;
+    justify-content: space-evenly;
     color: #000;
     font-size: 20px;
-    justify-content: space-between;
-    padding: 5px;
-}
-
-.main .option * {
-    display: flex;
-}
-
-.main .option .time * {
-    margin: 0 5px;
+    padding: 10px;
 }
 
 .main .option .btn {
@@ -122,81 +114,76 @@ header .col {
     font-size: 24px;
 }
 
+.main .option .time {
+    align-self: center;
+}
+
 .main .option img {
     width: 30px;
     padding: 2px;
 }
 
 .main .option .search-btn {
-    width: 30px;
+    align-self: center;
 }
 
 .main .title {
     background-color: #b3c8e4;
-    width: 100%;
-    max-width: 100%;
     text-align: center;
     padding: 10px;
-    font-size: 36px;
+    font-size: 32px;
 }
 
-.main .list {
+.main .table {
+    padding: 10px 0;
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 5px 5px;
+    margin: 0 20px;
     overflow: scroll;
+    font-size: 20px;
 }
 
-.main .list table {
+.main .table table {
     width: 100%;
 }
 
-.main .list th,
+.main .table th,
 td {
+    white-space: nowrap;
+    padding: 5px 10px;
     border: 1px solid #aaa;
-    padding: 5px;
     text-align: center;
 }
 
+/* Page */
+
 .main .page {
+    margin-top: 10px;
     display: flex;
     justify-content: flex-end;
 }
 
-.paginationjs.custom-paginationjs {
-    font-size: 20px
-}
-
-.paginationjs.custom-paginationjs .paginationjs-pages li>a {
+.paginationjs.custom-paginationjs .paginationjs-pages li > a {
     min-width: 36px;
     height: 34px;
     line-height: 34px;
-    font-size: 20px
+    font-size: 20px;
 }
 
-.paginationjs.custom-paginationjs .paginationjs-pages li.active>a {
+.paginationjs.custom-paginationjs .paginationjs-pages li.active > a {
     height: 36px;
-    line-height: 36px
+    line-height: 36px;
 }
 
+/* Footer */
 .footer {
+    position: absolute;
     width: 100%;
     background-color: #cfdbec;
-    font-size: 0px;
     height: 30px;
     margin-bottom: -30px;
+    font-size: 18px;
+    padding: 5px;
 }
 
-.footer .row {
-    display: flex;
+@media only screen and (max-width: 768px) {
 }
-
-.footer .col {
-    box-sizing: border-box;
-    height: 30px;
-    font-size: 14px;
-    padding: 8px;
-}
-
-@media only screen and (max-width: 768px) {}

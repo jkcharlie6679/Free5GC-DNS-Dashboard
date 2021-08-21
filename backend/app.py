@@ -43,12 +43,13 @@ def resource_usage():
 @app.route('/current', methods=['POST', 'GET', 'DELETE'])
 @cross_origin()
 def current():
+    pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
+                          user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
+    pg_cur = pg.cursor()
+    return_json = {}
     if request.method == 'POST':
         get_json = request.json
-        pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
-                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
-        pg_cur = pg.cursor()
-        return_json = {}
+
         try:
             pg_cur.execute(
                 """SELECT * FROM current WHERE "IMEI" = '{}'""".format(get_json["IMEI"]))
@@ -147,10 +148,6 @@ def current():
     elif request.method == 'GET':
         Domain_ID = request.args.get('Domain_ID')
         Cell_ID = request.args.get('Cell_ID')
-        pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
-                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
-        pg_cur = pg.cursor()
-        return_json = {}
         if Domain_ID == "" and Cell_ID == "":
             sql_query = ""
         elif Domain_ID != "":
@@ -184,23 +181,19 @@ def current():
         return json.dumps(return_json), status.HTTP_200_OK
     else:
         IMEI = request.args.get("IMEI")
-        pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
-                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
-        return_json = {}
-        pg_cur = pg.cursor()
         pg_cur.execute(
-                """SELECT * FROM current WHERE "IMEI" = '{}'""".format(IMEI))
+            """SELECT * FROM current WHERE "IMEI" = '{}'""".format(IMEI))
         sql_data = pg_cur.fetchall()
-        
+
         if len(sql_data) != 0:
             pg_cur.execute(
                 """DELETE FROM current WHERE "IMEI" = '{}'""".format(IMEI))
             pg.commit()
 
             pg_cur.execute("""UPDATE history SET "End_time" = '{}', "Next" = '{}' WHERE "Start_time" = '{}';"""
-                        .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
-                                "Get offline",
-                                sql_data[0][0]))
+                           .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
+                                   "Get offline",
+                                   sql_data[0][0]))
             pg.commit()
 
             pg.close()
@@ -215,12 +208,12 @@ def current():
 @app.route('/call_flow_log', methods=['POST', 'GET'])
 @cross_origin()
 def call_flow():
+    pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
+                          user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
+    pg_cur = pg.cursor()
+    return_json = {}
     if request.method == 'POST':
         get_json = request.json
-        pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
-                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
-        pg_cur = pg.cursor()
-        return_json = {}
         try:
             pg_cur.execute("""INSERT INTO call_flow("Datetime", "Type", "Payload") 
                                 VALUES('{}', '{}', '{}');"""
@@ -238,10 +231,6 @@ def call_flow():
         return_json["message"] = "Upload success"
         return json.dumps(return_json), status.HTTP_200_OK
     else:
-        pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
-                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
-        pg_cur = pg.cursor()
-        return_json = {}
         Start_time = request.args.get('Start_time')
         End_time = request.args.get('End_time')
         pg_cur.execute("""SELECT * FROM call_flow WHERE "Datetime" BETWEEN '{}' AND '{}'"""
@@ -264,12 +253,12 @@ def call_flow():
 @app.route('/system_log', methods=['POST', 'GET'])
 @cross_origin()
 def system_log():
+    pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
+                          user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
+    pg_cur = pg.cursor()
+    return_json = {}
     if request.method == 'POST':
         get_json = request.json
-        pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
-                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
-        pg_cur = pg.cursor()
-        return_json = {}
         try:
             pg_cur.execute("""INSERT INTO system_log("Datetime", "DNS_env_info", "DNS_ID", "CPU_Usage", "Memory_Usage", "Disk_Usage") 
                                 VALUES('{}', '{}', '{}', {}, {}, {});"""
@@ -290,10 +279,6 @@ def system_log():
         return_json["message"] = "Upload success"
         return json.dumps(return_json), status.HTTP_200_OK
     else:
-        pg = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
-                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
-        pg_cur = pg.cursor()
-        return_json = {}
         Start_time = request.args.get('Start_time')
         End_time = request.args.get('End_time')
         pg_cur.execute("""SELECT * FROM system_log WHERE "Datetime" BETWEEN '{}' AND '{}'"""
@@ -378,6 +363,89 @@ def cell_amount():
     return_json["Cell_3"] = len(sql_data)
     pg.close()
     return json.dumps(return_json), status.HTTP_200_OK
+
+
+@app.route('/dns', methods=['POST', 'DELETE'])
+@cross_origin()
+def dns():
+    ip = request.args["IP"]
+    domain = request.args["Domain"]
+    return_json = {}
+    if request.method == "POST":
+        with open(config['DNS']['FILE'], "r") as config_file:
+            lines = config_file.readlines()
+            for line in lines:
+                index_ip = 0
+                index_domain = 0
+                for data in line:
+                    if index_ip == len(ip):
+                        if data == ";":
+                            break
+                        else:
+                            index_ip = 0
+                    if data == ip[index_ip]:
+                        index_ip += 1
+                    else:
+                        index_ip = 0
+
+                    if index_domain == len(domain):
+                        if data == " ":
+                            break
+                        else:
+                            index_domain = 0
+                    if data == domain[index_domain]:
+                        index_domain += 1
+                    else:
+                        index_domain = 0
+
+                if index_ip == len(ip):
+                    lines[lines.index(line)] = "{} IN A {};\n".format(
+                        domain, ip)
+                    return_json["message"] = "Update sucess"
+                    break
+                if index_domain == len(domain):
+                    break
+            if index_domain == len(domain):
+                return_json["message"] = "Same domain"
+                return json.dumps(return_json), status.HTTP_400_BAD_REQUEST
+            if index_ip != len(ip):
+                lines.append("{} IN A {};\n".format(domain, ip))
+                return_json["message"] = "Create sucess"
+
+        with open(config['DNS']['FILE'], "w") as config_file:
+            config_file.writelines(lines)
+        os.system("sudo systemctl reload bind9")
+        if return_json["message"] == "Create sucess":
+            return json.dumps(return_json), status.HTTP_201_CREATED
+        else:
+            return json.dumps(return_json), status.HTTP_200_OK
+
+    elif request.method == "DELETE":
+        with open(config['DNS']['FILE'], "r") as config_file:
+            lines = config_file.readlines()
+            for line in lines:
+                index_ip = 0
+                for data in line:
+                    if index_ip == len(ip):
+                        if data == ";":
+                            break
+                        else:
+                            index_ip = 0
+                    if data == ip[index_ip]:
+                        index_ip += 1
+                    else:
+                        index_ip = 0
+
+                if index_ip == len(ip):
+                    lines = lines[:lines.index(
+                        line)] + lines[lines.index(line)+1:]
+                    break
+
+        with open(config['DNS']['FILE'], "w") as config_file:
+            config_file.writelines(lines)
+            return_json["message"] = "Delete sucess"
+        os.system("sudo systemctl reload bind9")
+        return json.dumps(return_json), status.HTTP_200_OK
 
 
 app.run(host="0.0.0.0", port=5000, debug=True)

@@ -1,127 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./../resetcss.css" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./style.css" />
+        <title>Free5GC Dashboard</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../resetcss.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css">
-    <title>Free5GC Dashboard</title>
-</head>
-
-<body>
-    <div class="wrapper">
-        <header>
-            <div class="logo">
-                <a href="index.html">
-                    <img src="./../images/logo.png" alt="logo">
-                </a>
-            </div>
-            <div class="row">
-                <div class="col">DNS1:&nbsp;
-                    <p id="dns1_dns"></p>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="./../images/5g-logo.png" alt="logo" />
+                    </a>
                 </div>
-                <div class="col">DNS2:&nbsp;
-                    <p id="dns2_dns"></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">CPU Usage:&nbsp;
-                    <p id="dns1_cpu"></p>
-                </div>
-                <div class="col">CPU Usage:&nbsp;
-                    <p id="dns2_cpu"></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">Memory Usage:&nbsp;
-                    <p id="dns1_mem"></p>
-                </div>
-                <div class="col">Memory Usage:&nbsp;
-                    <p id="dns2_mem"></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">Disk Space:&nbsp;
-                    <p id="dns1_disk"></p>
-                </div>
-                <div class="col">Disk Space:&nbsp;
-                    <p id="dns2_disk"></p>
-                </div>
-            </div>
-        </header>
-
-        <div class="container">
-            <div class="sidebar">
-                <nav>
-                    <ul>
-                        <li>
-                            <a id="Current_State" href="./../index.html">Current State</a>
-                        </li>
-                        <li>
-                            <a id="History_State" href="./../History_State/History_State.html">History State</a>
-                        </li>
-                        <li>
-                            <a id="System_Log" href="./System_Log.html">System Log</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="main">
-                <div class="row option">
-                    <div class="Tab">
-                        <button class="btn" id="btn_DNS_Call_Flow">
-                            DNS Call Flow
-                        </button>
-                        <button class="btn" id="btn_System_Log">
-                            System Log
-                        </button>
+                <div class="row">
+                    <div class="col">
+                        DNS1:&nbsp;
+                        <p id="dns1_dns"></p>
                     </div>
-                    <div class="time">
-                        <input id="Start_time" type="datetime-local">
-                        <input id="End_time" type="datetime-local">
-                    </div>
-                    <div class="search-btn">
-                        <button id="search-btn"><img src="./../images/search.png" alt="search"></button>
+                    <div class="col">
+                        DNS2:&nbsp;
+                        <p id="dns2_dns"></p>
                     </div>
                 </div>
-                <div class="title">
-                    Log
+                <div class="row">
+                    <div class="col">
+                        CPU Usage:&nbsp;
+                        <p id="dns1_cpu"></p>
+                    </div>
+                    <div class="col">
+                        CPU Usage:&nbsp;
+                        <p id="dns2_cpu"></p>
+                    </div>
                 </div>
-                <div class="row list">
-
-                    <table>
-                        <thead id="thead">
-
-                        </thead>
-                        <tbody id="tbody">
-
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col">
+                        Memory Usage:&nbsp;
+                        <p id="dns1_mem"></p>
+                    </div>
+                    <div class="col">
+                        Memory Usage:&nbsp;
+                        <p id="dns2_mem"></p>
+                    </div>
                 </div>
-                <div class="row page" id="page">
+                <div class="row">
+                    <div class="col">
+                        Disk Space:&nbsp;
+                        <p id="dns1_disk"></p>
+                    </div>
+                    <div class="col">
+                        Disk Space:&nbsp;
+                        <p id="dns2_disk"></p>
+                    </div>
+                </div>
+            </header>
 
+            <div class="container">
+                <div class="sidebar">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a id="Current_State" href="./../index.html"
+                                    >Current State</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    id="History_State"
+                                    href="./../History_State/History_State.html"
+                                    >History State</a
+                                >
+                            </li>
+                            <li>
+                                <a id="System_Log" href="./System_Log.html"
+                                    >System Log</a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="main">
+                    <div class="option">
+                        <div class="Tab">
+                            <button class="btn" id="btn_DNS_Call_Flow">
+                                DNS Call Flow
+                            </button>
+                            <button class="btn" id="btn_System_Log">
+                                System Log
+                            </button>
+                        </div>
+                        <div class="time">
+                            <input id="Start_time" type="datetime-local" />
+                            <input id="End_time" type="datetime-local" />
+                        </div>
+                        <div class="search-btn">
+                            <button id="search-btn">
+                                <img
+                                    src="./../images/search.png"
+                                    alt="search"
+                                />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="title">Log</div>
+                    <div class="table">
+                        <table>
+                            <thead id="thead"></thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="row page" id="page"></div>
                 </div>
             </div>
+
+            <div class="footer">CopyRigrt 2021</div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+            <script src="./script.js"></script>
         </div>
-
-        <div class="footer">
-            <div class="row">
-                <div class="col">
-                    CopyRigrt 2021
-                </div>
-            </div>
-        </div>
-
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-        <script src="./script.js"></script>
-    </div>
-
-</body>
-
+    </body>
 </html>
