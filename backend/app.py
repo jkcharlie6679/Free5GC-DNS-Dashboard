@@ -310,13 +310,27 @@ def history():
     Start_time = request.args.get('Start_time')
     End_time = request.args.get('End_time')
     Cell_ID = request.args.get('Cell_ID')
-    if Cell_ID == "":
+    Device_ID = request.args.get('Device_ID')
+    if Cell_ID == "" and Device_ID == "":
         pg_cur.execute("""SELECT * FROM history WHERE "Start_time" > '{}' AND "End_time" < '{}'"""
                        .format(datetime.datetime.strptime(Start_time, "%Y-%m-%dT%H:%M%z"),
                                datetime.datetime.strptime(End_time, "%Y-%m-%dT%H:%M%z")))
-    else:
+    elif Device_ID == "":
         pg_cur.execute("""SELECT * FROM history WHERE "Cell_ID" = '{}' AND "Start_time" > '{}' AND "End_time" < '{}'"""
                        .format(Cell_ID,
+                               datetime.datetime.strptime(
+                                   Start_time, "%Y-%m-%dT%H:%M%z"),
+                               datetime.datetime.strptime(End_time, "%Y-%m-%dT%H:%M%z")))
+    elif Cell_ID == "":
+        pg_cur.execute("""SELECT * FROM history WHERE "Device_ID" = '{}' AND "Start_time" > '{}' AND "End_time" < '{}'"""
+                       .format(Device_ID,
+                               datetime.datetime.strptime(
+                                   Start_time, "%Y-%m-%dT%H:%M%z"),
+                               datetime.datetime.strptime(End_time, "%Y-%m-%dT%H:%M%z")))
+    else:
+        pg_cur.execute("""SELECT * FROM history WHERE "Cell_ID" = '{}' AND "Device_ID" = '{}' AND "Start_time" > '{}' AND "End_time" < '{}'"""
+                       .format(Cell_ID,
+                               Device_ID,
                                datetime.datetime.strptime(
                                    Start_time, "%Y-%m-%dT%H:%M%z"),
                                datetime.datetime.strptime(End_time, "%Y-%m-%dT%H:%M%z")))
