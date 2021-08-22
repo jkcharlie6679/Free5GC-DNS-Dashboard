@@ -379,11 +379,12 @@ def cell_amount():
     return json.dumps(return_json), status.HTTP_200_OK
 
 
-@app.route('/dns', methods=['POST', 'DELETE'])
+@app.route('/dns', methods=['GET', 'POST', 'DELETE'])
 @cross_origin()
 def dns():
-    ip = request.args["IP"]
-    domain = request.args["Domain"]
+    if request.method != "GET":
+        ip = request.args["IP"]
+        domain = request.args["Domain"]
     return_json = {}
     if request.method == "POST":
         with open(config['DNS']['FILE'], "r") as config_file:
@@ -433,7 +434,6 @@ def dns():
             return json.dumps(return_json), status.HTTP_201_CREATED
         else:
             return json.dumps(return_json), status.HTTP_200_OK
-
     elif request.method == "DELETE":
         with open(config['DNS']['FILE'], "r") as config_file:
             lines = config_file.readlines()
@@ -459,6 +459,35 @@ def dns():
             config_file.writelines(lines)
             return_json["message"] = "Delete sucess"
         os.system("sudo systemctl reload bind9")
+        return json.dumps(return_json), status.HTTP_200_OK
+    elif request.method == "GET":
+        search = "localhost.;"
+        filter_word = " IN A "
+
+        with open(config['DNS']['FILE'], 'r') as the_file:
+            lines = the_file.readlines()
+
+            for line in lines:
+                index_word = 0
+                for word in line:
+                    if index_word == len(search):
+                        break
+                    if word == search[index_word]:
+                        index_word += 1
+                    else:
+                        index_word = 0
+                if index_word == len(search):
+                    start_line = lines.index(line) + 1
+                    break
+            return_json["amount"] = len(lines[start_line:])
+            return_json["items"] = []
+            for line in lines[start_line:]:
+                item_json = {}
+                filter_start = line.index(filter_word)
+                item_json["Domain"] = line[:filter_start]+".free5gc"
+                item_json["ip"] = line.replace(";\n", "")[filter_start+6:]
+                return_json["items"].append(item_json)
+
         return json.dumps(return_json), status.HTTP_200_OK
 
 
