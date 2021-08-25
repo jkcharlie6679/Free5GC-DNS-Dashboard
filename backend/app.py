@@ -491,4 +491,4 @@ def dns():
         return json.dumps(return_json), status.HTTP_200_OK
 
 
-app.run(host="0.0.0.0", port=5000, debug=True)
+app.run(host="0.0.0.0", port=5534, debug=True)
