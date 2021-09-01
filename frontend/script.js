@@ -1,6 +1,6 @@
 $(document).ready(function () {
     initial();
-    setInterval(myTimer, 10000);
+    setInterval(myTimer, 300000);
 
     $("#cell_1_btn").click(function () {
         $("#Domain_ID").text("Domain 1");
@@ -68,33 +68,68 @@ $(document).ready(function () {
                 cell_id,
             context: document.body,
         }).done(function (body) {
-            $.each(JSON.parse(body).items, function (index, value) {
-                dataHtml += `<div class="data">
-                                <div class="img">
-                                    <img src="./images/UE.png" alt="IoT Device">
-                                </div>
-                                <div class="info">
-                                    <p id="index">
-                                        index: ${index + 1}
-                                    </p>
-                                    <p id="online">
-                                        online
-                                    </p>
-                                    <p id="Device_ID">
-                                        Device_ID: ${value.Device_ID}
-                                    </p>
-                                    <p id="IPv4">
-                                        IPv4: ${value.IPv4}
-                                    </p>
-                                    <p id="IPv6">
-                                        IPv6: ${value.IPv6}
-                                    </p>
-                                    <p id="FQDN">
-                                        FQDN: ${value.FQDN}
-                                    </p>
-                                </div>
-                            </div>`;
-            });
+            if (JSON.parse(body).amount === 0) {
+                dataHtml += `<div class="IoT-data">
+                <div class="img">
+                    <img src="./images/IoT.png" alt="IoT Device">
+                </div>
+                <div class="info">
+                    <p id="index">
+                        index: 
+                    </p>
+                    <p id="online">
+                        offline
+                    </p>
+                    <p id="Device_ID">
+                        Device_ID: 
+                    </p>
+                    <p id="IMEI">
+                        IMEI: 
+                    </p>
+                    <p id="IPv4">
+                        IPv4: 
+                    </p>
+                    <p id="IPv6">
+                        IPv6: 
+                    </p>
+                    <p id="FQDN">
+                        FQDN: 
+                    </p>
+                </div>
+            </div>`;
+            } else {
+                $.each(JSON.parse(body).items, function (index, value) {
+                    dataHtml += `<div class="IoT-data">
+                                    <div class="img">
+                                        <img src="./images/IoT.png" alt="IoT Device">
+                                    </div>
+                                    <div class="info">
+                                        <p id="index">
+                                            index: ${index + 1}
+                                        </p>
+                                        <p id="online" style="color: green">
+                                            online
+                                        </p>
+                                        <p id="Device_ID">
+                                            Device_ID: ${value.Device_ID}
+                                        </p>
+                                        <p id="IMEI">
+                                            IMEI: ${value.IMEI}
+                                        </p>
+                                        <p id="IPv4">
+                                            IPv4: ${value.IPv4}
+                                        </p>
+                                        <p id="IPv6">
+                                            IPv6: ${value.IPv6}
+                                        </p>
+                                        <p id="FQDN">
+                                            FQDN: ${value.FQDN}
+                                        </p>
+                                    </div>
+                                </div>`;
+                });
+            }
+
             $("#list").html(dataHtml);
         });
     }

@@ -18,165 +18,162 @@
             <header>
                 <div class="logo">
                     <a href="index.html">
-                        <img src="./images/5g-logo.png" alt="logo" />
+                        <img src="./images/TTC-logo.jpg" alt="logo" />
                     </a>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        DNS1:&nbsp;
-                        <p id="dns1_dns"></p>
+                <div class="dns-status">
+                    <div class="row">
+                        <div class="col">
+                            DNS1:&nbsp;
+                            <p id="dns1_dns"></p>
+                        </div>
+                        <div class="col">
+                            CPU Usage:&nbsp;
+                            <p id="dns1_cpu"></p>
+                        </div>
+                        <div class="col">
+                            Memory Usage:&nbsp;
+                            <p id="dns1_mem"></p>
+                        </div>
+                        <div class="col">
+                            Disk Space:&nbsp;
+                            <p id="dns1_disk"></p>
+                        </div>
                     </div>
-                    <div class="col">
-                        DNS2:&nbsp;
-                        <p id="dns2_dns"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        CPU Usage:&nbsp;
-                        <p id="dns1_cpu"></p>
-                    </div>
-                    <div class="col">
-                        CPU Usage:&nbsp;
-                        <p id="dns2_cpu"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Memory Usage:&nbsp;
-                        <p id="dns1_mem"></p>
-                    </div>
-                    <div class="col">
-                        Memory Usage:&nbsp;
-                        <p id="dns2_mem"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Disk Space:&nbsp;
-                        <p id="dns1_disk"></p>
-                    </div>
-                    <div class="col">
-                        Disk Space:&nbsp;
-                        <p id="dns2_disk"></p>
+                    <div class="row">
+                        <div class="col">
+                            DNS2:&nbsp;
+                            <p id="dns2_dns"></p>
+                        </div>
+                        <div class="col">
+                            CPU Usage:&nbsp;
+                            <p id="dns2_cpu"></p>
+                        </div>
+                        <div class="col">
+                            Memory Usage:&nbsp;
+                            <p id="dns2_mem"></p>
+                        </div>
+                        <div class="col">
+                            Disk Space:&nbsp;
+                            <p id="dns2_disk"></p>
+                        </div>
                     </div>
                 </div>
             </header>
 
             <div class="container">
                 <div class="sidebar">
-                    <nav>
-                        <ul>
-                            <li>
-                                <a id="Current_State" href="#">Current State</a>
-                            </li>
-                            <li>
-                                <a
-                                    id="History_State"
-                                    href="./History_State/History_State.html"
-                                    >History State</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    id="System_Log"
-                                    href="./System_Log/System_Log.html"
-                                    >System Log</a
-                                >
-                            </li>
-                        </ul>
-                    </nav>
+                    <button id="Current_State" onclick="location.href='.'">
+                        Current State
+                    </button>
+                    <button
+                        id="History_State"
+                        onclick="location.href='./History_State/History_State.html'"
+                    >
+                        History State
+                    </button>
+                    <button
+                        id="System_Log"
+                        onclick="location.href='./System_Log/System_Log.html'"
+                    >
+                        System Log
+                    </button>
                 </div>
                 <div class="main">
-                    <div class="row cell">
-                        <div class="domain">
-                            <div class="title">Domain1</div>
-                            <div class="list">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Index</th>
-                                            <th>Cell</th>
-                                            <th>Online#</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                Cell_1
-                                                <button
-                                                    id="cell_1_btn"
-                                                    type="button"
-                                                >
-                                                    <img
-                                                        src="./images/cell.png"
-                                                        alt="cell"
-                                                    />
-                                                </button>
-                                            </td>
-                                            <td id="cell_1">0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>
-                                                Cell_2
-                                                <button
-                                                    id="cell_2_btn"
-                                                    type="button"
-                                                >
-                                                    <img
-                                                        src="./images/cell.png"
-                                                        alt="cell"
-                                                    />
-                                                </button>
-                                            </td>
-                                            <td id="cell_2">0</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="domain">
-                            <div class="title">Domain2</div>
-                            <div class="list">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Index</th>
-                                            <th>Cell</th>
-                                            <th>Online#</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                Cell_3
-                                                <button
-                                                    id="cell_3_btn"
-                                                    type="button"
-                                                >
-                                                    <img
-                                                        src="./images/cell.png"
-                                                        alt="cell"
-                                                    />
-                                                </button>
-                                            </td>
-                                            <td id="cell_3">0</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="img">
+                        <img src="./images/5G-IoT.png" alt="5G to IoT" />
                     </div>
-                    <div class="row user">
-                        <div class="title">User Connection Status</div>
-                        <div class="status">
-                            <p id="Domain_ID">Domain 1</p>
-                            <p id="Cell_ID">Cell 1</p>
+                    <div class="data">
+                        <div class="row cell">
+                            <div class="domain">
+                                <div class="title">Domain1</div>
+                                <div class="list">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Cell</th>
+                                                <th>Online#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    <button
+                                                        id="cell_1_btn"
+                                                        type="button"
+                                                    >
+                                                        <img
+                                                            src="./images/cell.png"
+                                                            alt="cell"
+                                                        />
+                                                    </button>
+                                                    Cell_1
+                                                </td>
+                                                <td id="cell_1">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    <button
+                                                        id="cell_2_btn"
+                                                        type="button"
+                                                    >
+                                                        <img
+                                                            src="./images/cell.png"
+                                                            alt="cell"
+                                                        />
+                                                    </button>
+                                                    Cell_2
+                                                </td>
+                                                <td id="cell_2">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="domain">
+                                <div class="title">Domain2</div>
+                                <div class="list">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Index</th>
+                                                <th>Cell</th>
+                                                <th>Online#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    <button
+                                                        id="cell_3_btn"
+                                                        type="button"
+                                                    >
+                                                        <img
+                                                            src="./images/cell.png"
+                                                            alt="cell"
+                                                        />
+                                                    </button>
+                                                    Cell_3
+                                                </td>
+                                                <td id="cell_3">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="list" id="list"></div>
+                        <div class="row user">
+                            <div class="title">User Connection Status</div>
+                            <div class="status">
+                                <p id="Domain_ID">Domain 1</p>
+                                <p id="Cell_ID">Cell 1</p>
+                            </div>
+                            <div class="list" id="list"></div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     initial();
 
-    setInterval(myTimer, 10000);
+    setInterval(myTimer, 300000);
 
     $("#search-btn").click(function () {
         var Start_time = $("#Start_time").val();
@@ -11,13 +11,12 @@ $(document).ready(function () {
         var url =
             "http://140.118.121.110:5534/history?Start_time=" +
             Start_time +
-            "%2B00:00&End_time=" +
+            "%2B08:00&End_time=" +
             End_time +
-            "%2B00:00&Cell_ID=" +
+            "%2B08:00&Cell_ID=" +
             Cell_ID +
             "&Device_ID=" +
             IoT_ID;
-        console.log(url);
         page_history(url);
     });
 
@@ -38,9 +37,9 @@ $(document).ready(function () {
         var url =
             "http://140.118.121.110:5534/history?Start_time=" +
             Start_time +
-            "%2B00:00&End_time=" +
+            "%2B08:00&End_time=" +
             End_time +
-            "%2B00:00&Cell_ID=";
+            "%2B08:00&Cell_ID=";
 
         page_history(url);
     }
@@ -68,7 +67,11 @@ $(document).ready(function () {
                     type: "GET",
                     url: url,
                     success: function (response) {
-                        done(JSON.parse(response).items);
+                        if (JSON.parse(response).amount === 0) {
+                            done([0]);
+                        } else {
+                            done(JSON.parse(response).items);
+                        }
                     },
                 });
             },
@@ -76,26 +79,27 @@ $(document).ready(function () {
             className: "custom-paginationjs",
             callback: function (data, pagination) {
                 var dataHtml = "";
-                var pageStart =
-                    (pagination.pageNumber - 1) * pagination.pageSize;
-                var pageEnd = pageStart + pagination.pageSize;
-                var pageItems = data.slice(pageStart, pageEnd);
-                $.each(data, function (index, item) {
-                    index += 1;
-                    dataHtml += "<tr><td>" + index + "</td>";
-                    dataHtml += "<td>" + item.Start_time + "</td>";
-                    dataHtml += "<td>" + item.End_time + "</td>";
-                    dataHtml += "<td>" + item.Previous + "</td>";
-                    dataHtml += "<td>" + item.Next + "</td>";
-                    dataHtml += "<td>" + item.DNS_ID + "</td>";
-                    dataHtml += "<td>" + item.Domain_ID + "</td>";
-                    dataHtml += "<td>" + item.Cell_ID + "</td>";
-                    dataHtml += "<td>" + item.Device_ID + "</td>";
-                    dataHtml += "<td>" + item.IMEI + "</td>";
-                    dataHtml += "<td>" + item.IPv4 + "</td>";
-                    dataHtml += "<td>" + item.IPv6 + "</td>";
-                    dataHtml += "<td>" + item.FQDN + "</td></tr>";
-                });
+
+                if (data[0] === 0) {
+                    dataHtml += `<tr><td colspan="13">No data</td></tr>`;
+                } else {
+                    $.each(data, function (index, item) {
+                        index += 1;
+                        dataHtml += "<tr><td>" + index + "</td>";
+                        dataHtml += "<td>" + item.Start_time + "</td>";
+                        dataHtml += "<td>" + item.End_time + "</td>";
+                        dataHtml += "<td>" + item.Previous + "</td>";
+                        dataHtml += "<td>" + item.Next + "</td>";
+                        dataHtml += "<td>" + item.DNS_ID + "</td>";
+                        dataHtml += "<td>" + item.Domain_ID + "</td>";
+                        dataHtml += "<td>" + item.Cell_ID + "</td>";
+                        dataHtml += "<td>" + item.Device_ID + "</td>";
+                        dataHtml += "<td>" + item.IMEI + "</td>";
+                        dataHtml += "<td>" + item.IPv4 + "</td>";
+                        dataHtml += "<td>" + item.IPv6 + "</td>";
+                        dataHtml += "<td>" + item.FQDN + "</td></tr>";
+                    });
+                }
                 $("#tbody").html(dataHtml);
             },
         });
