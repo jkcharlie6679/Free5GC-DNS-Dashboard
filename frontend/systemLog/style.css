@@ -44,19 +44,19 @@ header {
     height: 50px;
 }
 
-header .dns-status {
+header .dnsStatus {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     font-size: 16px;
 }
 
-header .dns-status .row {
+header .dnsStatus .row {
     display: flex;
     margin-top: 4px;
 }
 
-header .dns-status .col {
+header .dnsStatus .col {
     padding-top: 5px;
     display: flex;
     width: 25%;
@@ -71,7 +71,7 @@ header .dns-status .col {
 
 /* Sidebar */
 
-#System_Log {
+#systemLog {
     background-color: #c7d9f1;
 }
 
@@ -131,8 +131,16 @@ header .dns-status .col {
     padding: 2px;
 }
 
-.main .option .search-btn {
+.main .option .searchBtn {
     align-self: center;
+}
+
+.main .option .download {
+    align-self: center;
+}
+
+.main .option #download {
+    display: none;
 }
 
 .main .title {

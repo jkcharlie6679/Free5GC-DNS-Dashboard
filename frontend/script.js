@@ -2,74 +2,68 @@ $(document).ready(function () {
     initial();
     setInterval(myTimer, 300000);
 
-    $("#cell_1_btn").click(function () {
-        $("#Domain_ID").text("Domain 1");
-        $("#Cell_ID").text("Cell 1");
-        get_detail("Domain_1", "Cell_1");
+    $("#cellOneBtn").click(function () {
+        $("#domainId").text("Domain 1");
+        $("#cellId").text("Cell 1");
+        getDetail("Domain_1", "Cell_1");
     });
 
-    $("#cell_2_btn").click(function () {
-        $("#Domain_ID").text("Domain 1");
-        $("#Cell_ID").text("Cell 2");
-        get_detail("Domain_1", "Cell_2");
+    $("#cellTwoBtn").click(function () {
+        $("#domainId").text("Domain 1");
+        $("#cellId").text("Cell 2");
+        getDetail("Domain_1", "Cell_2");
     });
 
-    $("#cell_3_btn").click(function () {
-        $("#Domain_ID").text("Domain 2");
-        $("#Cell_ID").text("Cell 3");
-        get_detail("Domain_2", "Cell_3");
+    $("#cellThreeBtn").click(function () {
+        $("#domainId").text("Domain 2");
+        $("#cellId").text("Cell 3");
+        getDetail("Domain_2", "Cell_3");
     });
 
     function myTimer() {
-        get_cell();
-        get_resource();
+        getCell();
+        getResource();
     }
 
     function initial() {
-        get_resource();
-        get_detail("Domain_1", "Cell_1");
-        get_cell();
+        getResource();
+        getDetail("Domain_1", "Cell_1");
+        getCell();
     }
 
-    function get_cell() {
-        $.get(
-            "http://140.118.121.110:5534/cell_amount",
-            function (data, status) {
-                $("#cell_1").text(JSON.parse(data).Cell_1);
-                $("#cell_2").text(JSON.parse(data).Cell_2);
-                $("#cell_3").text(JSON.parse(data).Cell_3);
-            }
-        );
+    function getCell() {
+        $.get("http://140.118.121.110:5534/cellAmount", function (data) {
+            $("#cellOne").text(JSON.parse(data).cellOne);
+            $("#cellTwo").text(JSON.parse(data).cellTwo);
+            $("#cellThree").text(JSON.parse(data).cellThree);
+        });
     }
 
-    function get_resource() {
-        $.get(
-            "http://140.118.121.110:5534/resource_usage",
-            function (data, status) {
-                $("#dns1_dns").text(JSON.parse(data)[0].DNS_ID);
-                $("#dns1_cpu").text(JSON.parse(data)[0].CPU_Usage + "%");
-                $("#dns1_mem").text(JSON.parse(data)[0].Memory_Usage + "%");
-                $("#dns1_disk").text(JSON.parse(data)[0].Disk_Usage + "%");
-                $("#dns2_dns").text(JSON.parse(data)[1].DNS_ID);
-                $("#dns2_cpu").text(JSON.parse(data)[1].CPU_Usage + "%");
-                $("#dns2_mem").text(JSON.parse(data)[1].Memory_Usage + "%");
-                $("#dns2_disk").text(JSON.parse(data)[1].Disk_Usage + "%");
-            }
-        );
+    function getResource() {
+        $.get("http://140.118.121.110:5534/resourceUsage", function (data) {
+            $("#dnsIdOne").text(JSON.parse(data)[0].dnsId);
+            $("#dnsCpuOne").text(JSON.parse(data)[0].cpuUsage + "%");
+            $("#dnsMemoryOne").text(JSON.parse(data)[0].memoryUsage + "%");
+            $("#dnsDiskOne").text(JSON.parse(data)[0].diskUsage + "%");
+            $("#dnsIdTwo").text(JSON.parse(data)[1].dnsId);
+            $("#dnsCpuTwo").text(JSON.parse(data)[1].cpuUsage + "%");
+            $("#dnsMemoryTwo").text(JSON.parse(data)[1].memoryUsage + "%");
+            $("#dnsDiskTwo").text(JSON.parse(data)[1].diskUsage + "%");
+        });
     }
 
-    function get_detail(domain_id, cell_id) {
+    function getDetail(domainId, cellId) {
         var dataHtml = "";
         $.ajax({
             url:
-                "http://140.118.121.110:5534/current?Domain_ID=" +
-                domain_id +
-                "&Cell_ID=" +
-                cell_id,
+                "http://140.118.121.110:5534/current?domainId=" +
+                domainId +
+                "&cellId=" +
+                cellId,
             context: document.body,
         }).done(function (body) {
             if (JSON.parse(body).amount === 0) {
-                dataHtml += `<div class="IoT-data">
+                dataHtml += `<div class="iotData">
                 <div class="img">
                     <img src="./images/IoT.png" alt="IoT Device">
                 </div>
@@ -99,7 +93,7 @@ $(document).ready(function () {
             </div>`;
             } else {
                 $.each(JSON.parse(body).items, function (index, value) {
-                    dataHtml += `<div class="IoT-data">
+                    dataHtml += `<div class="iotData">
                                     <div class="img">
                                         <img src="./images/IoT.png" alt="IoT Device">
                                     </div>
@@ -111,19 +105,19 @@ $(document).ready(function () {
                                             online
                                         </p>
                                         <p id="Device_ID">
-                                            Device_ID: ${value.Device_ID}
+                                            Device_ID: ${value.deviceId}
                                         </p>
                                         <p id="IMEI">
-                                            IMEI: ${value.IMEI}
+                                            IMEI: ${value.imei}
                                         </p>
                                         <p id="IPv4">
-                                            IPv4: ${value.IPv4}
+                                            IPv4: ${value.ipv4}
                                         </p>
                                         <p id="IPv6">
-                                            IPv6: ${value.IPv6}
+                                            IPv6: ${value.ipv6}
                                         </p>
                                         <p id="FQDN">
-                                            FQDN: ${value.FQDN}
+                                            FQDN: ${value.fqdn}
                                         </p>
                                     </div>
                                 </div>`;

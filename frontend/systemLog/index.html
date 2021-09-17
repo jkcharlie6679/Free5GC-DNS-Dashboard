@@ -4,58 +4,58 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./../resetcss.css" />
+        <link rel="stylesheet" href="/resetcss.css" />
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="./style.css" />
-        <title>Free5GC Dashboard</title>
+        <link rel="stylesheet" href="/systemLog/style.css" />
+        <title>Dashboard</title>
     </head>
 
     <body>
         <div class="wrapper">
             <header>
                 <div class="logo">
-                    <a href="index.html">
-                        <img src="./../images/TTC-logo.jpg" alt="logo" />
+                    <a href="/index.html">
+                        <img src="/images/TTC-logo.jpg" alt="logo" />
                     </a>
                 </div>
-                <div class="dns-status">
+                <div class="dnsStatus">
                     <div class="row">
                         <div class="col">
                             DNS1:&nbsp;
-                            <p id="dns1_dns"></p>
+                            <p id="dnsIdOne"></p>
                         </div>
                         <div class="col">
                             CPU Usage:&nbsp;
-                            <p id="dns1_cpu"></p>
+                            <p id="dnsCpuOne"></p>
                         </div>
                         <div class="col">
                             Memory Usage:&nbsp;
-                            <p id="dns1_mem"></p>
+                            <p id="dnsMemoryOne"></p>
                         </div>
                         <div class="col">
                             Disk Space:&nbsp;
-                            <p id="dns1_disk"></p>
+                            <p id="dnsDiskOne"></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             DNS2:&nbsp;
-                            <p id="dns2_dns"></p>
+                            <p id="dnsIdTwo"></p>
                         </div>
                         <div class="col">
                             CPU Usage:&nbsp;
-                            <p id="dns2_cpu"></p>
+                            <p id="dnsCpuTwo"></p>
                         </div>
                         <div class="col">
                             Memory Usage:&nbsp;
-                            <p id="dns2_mem"></p>
+                            <p id="dnsMemoryTwo"></p>
                         </div>
                         <div class="col">
                             Disk Space:&nbsp;
-                            <p id="dns2_disk"></p>
+                            <p id="dnsDiskTwo"></p>
                         </div>
                     </div>
                 </div>
@@ -64,45 +64,42 @@
             <div class="container">
                 <div class="sidebar">
                     <button
-                        id="Current_State"
-                        onclick="location.href='./../index.html'"
+                        id="currentState"
+                        onclick="location.href='/index.html'"
                     >
                         Current State
                     </button>
                     <button
-                        id="History_State"
-                        onclick="location.href='./../History_State/History_State.html'"
+                        id="historyState"
+                        onclick="location.href='/historyState/'"
                     >
                         History State
                     </button>
-                    <button
-                        id="System_Log"
-                        onclick="location.href='./System_Log.html'"
-                    >
+                    <button id="systemLog" onclick="location.href='/systemLog'">
                         System Log
                     </button>
                 </div>
                 <div class="main">
                     <div class="option">
-                        <div class="Tab">
-                            <button class="btn" id="btn_DNS_Call_Flow">
+                        <div>
+                            <button class="btn" id="callFlowBtn">
                                 DNS Call Flow
                             </button>
-                            <button class="btn" id="btn_System_Log">
+                            <button class="btn" id="systemLogBtn">
                                 System Log
                             </button>
                         </div>
                         <div class="time">
-                            <input id="Start_time" type="datetime-local" />
-                            <input id="End_time" type="datetime-local" />
+                            <input id="startTime" type="datetime-local" />
+                            <input id="endTime" type="datetime-local" />
                         </div>
-                        <div class="search-btn">
-                            <button id="search-btn">
-                                <img
-                                    src="./../images/search.png"
-                                    alt="search"
-                                />
+                        <div class="searchBtn">
+                            <button id="searchBtn">
+                                <img src="/images/search.png" alt="search" />
                             </button>
+                        </div>
+                        <div class="download">
+                            <a id="download">download</a>
                         </div>
                     </div>
                     <div class="title">Log</div>
@@ -120,7 +117,7 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-            <script src="./script.js"></script>
+            <script src="/systemLog/script.js"></script>
         </div>
     </body>
 </html>

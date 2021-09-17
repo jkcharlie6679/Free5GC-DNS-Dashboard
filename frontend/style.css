@@ -44,19 +44,19 @@ header {
     height: 50px;
 }
 
-header .dns-status {
+header .dnsStatus {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     font-size: 16px;
 }
 
-header .dns-status .row {
+header .dnsStatus .row {
     display: flex;
     margin-top: 4px;
 }
 
-header .dns-status .col {
+header .dnsStatus .col {
     padding-top: 5px;
     display: flex;
     width: 25%;
@@ -71,7 +71,7 @@ header .dns-status .col {
 
 /* Sidebar */
 
-#Current_State {
+#currentState {
     background-color: #c7d9f1;
 }
 
@@ -203,7 +203,7 @@ th {
     max-height: 100%;
 }
 
-.main .user .list .IoT-data {
+.main .user .list .iotData {
     display: flex;
     padding: 20px;
     overflow-x: visible;
@@ -212,24 +212,24 @@ th {
     width: auto;
 }
 
-.main .user .list .IoT-data .img {
+.main .user .list .iotData .img {
     width: 100px;
     height: auto;
     margin: auto;
 }
 
-.main .user .list .IoT-data .img img {
+.main .user .list .iotData .img img {
     display: block;
     width: 80%;
     height: auto;
     padding: 0 10px 0 0;
 }
 
-.main .user .list .IoT-data .info {
+.main .user .list .iotData .info {
     flex-grow: 1;
 }
 
-.main .user .list .IoT-data .info p {
+.main .user .list .iotData .info p {
     font-size: 16px;
     border-bottom: 1px solid #000;
     padding: 5px;
