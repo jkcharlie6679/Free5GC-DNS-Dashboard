@@ -131,6 +131,7 @@ $(document).ready(function () {
                                         <td>${item.imei}</td>
                                         <td>${item.ipv4}</td>
                                         <td>${item.ipv6}</td>
+                                        <td>${item.sliceId}</td>
                                         <td>${item.fqdn}</td>
                                     </tr>`;
                     });

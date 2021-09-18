@@ -19,7 +19,7 @@ def resourceUsage():
     pgCur = pgSql.cursor()
     returnJson = []
     pgCur.execute(
-        """SELECT DISTINCT ON ("DNS_ID") * FROM system_log ORDER BY "DNS_ID", "Datetime" DESC""")
+        """SELECT DISTINCT ON ("dnsId") * FROM "systemLog" ORDER BY "dnsId", "datetime" DESC""")
     sqlData = pgCur.fetchall()
     pgSql.close()
 
@@ -45,7 +45,7 @@ def current():
 
         try:
             pgCur.execute(
-                """SELECT * FROM current WHERE "IMEI" = '{}'""".format(getJson["IMEI"]))
+                """SELECT * FROM "current" WHERE "imei" = '{}'""".format(getJson["IMEI"]))
         except KeyError as error:
             pgSql.close()
             returnJson["parameter"] = str(error).replace("'", '')
@@ -54,15 +54,16 @@ def current():
         sqlData = pgCur.fetchall()
         if len(sqlData) == 1:
             try:
-                pgCur.execute("""UPDATE current SET "Start_time" = '{}',
-                                                    "DNS_ID" = '{}',
-                                                    "Domain_ID" = '{}',
-                                                    "Cell_ID" = '{}',
-                                                    "Device_ID" = '{}',
-                                                    "IMEI" = '{}',
-                                                    "IPv4" = '{}',
-                                                    "IPv6"= '{}',
-                                                    "FQDN" = '{}' WHERE "IMEI" = '{}';"""
+                pgCur.execute("""UPDATE "current" SET "startTime" = '{}',
+                                                    "dnsId" = '{}',
+                                                    "domainId" = '{}',
+                                                    "cellId" = '{}',
+                                                    "deviceId" = '{}',
+                                                    "imei" = '{}',
+                                                    "ipv4" = '{}',
+                                                    "ipv6"= '{}',
+                                                    "sliceId" = '{}',
+                                                    "fqdn" = '{}' WHERE "imei" = '{}';"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                       getJson["DNS_ID"],
                                       getJson["Domain_ID"],
@@ -71,16 +72,17 @@ def current():
                                       getJson["IMEI"],
                                       getJson["IPv4"],
                                       getJson["IPv6"],
+                                      getJson["Slice_ID"],
                                       getJson["FQDN"],
                                       getJson["IMEI"]))
                 pgSql.commit()
-                pgCur.execute("""UPDATE history SET "End_time" = '{}', "Next" = '{}' WHERE "Start_time" = '{}';"""
+                pgCur.execute("""UPDATE "history" SET "endTime" = '{}', "next" = '{}' WHERE "startTime" = '{}';"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                       "Hand off to " + getJson["Cell_ID"],
                                       sqlData[0][0]))
                 pgSql.commit()
-                pgCur.execute("""INSERT INTO history("Start_time", "Previous", "DNS_ID", "Domain_ID", "Cell_ID", "Device_ID", "IMEI", "IPv4", "IPv6", "FQDN")
-                                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}');"""
+                pgCur.execute("""INSERT INTO "history"("startTime", "previous", "dnsId", "domainId", "cellId", "deviceId", "imei", "ipv4", "ipv6", "sliceId", "fqdn")
+                                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}', '{}');"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                       "Hand off from " + sqlData[0][3],
                                       getJson["DNS_ID"],
@@ -90,6 +92,7 @@ def current():
                                       getJson["IMEI"],
                                       getJson["IPv4"],
                                       getJson["IPv6"],
+                                      getJson["Slice_ID"],
                                       getJson["FQDN"]))
                 pgSql.commit()
             except KeyError as error:
@@ -103,8 +106,8 @@ def current():
             return json.dumps(returnJson), status.HTTP_200_OK
         else:
             try:
-                pgCur.execute("""INSERT INTO current("Start_time", "DNS_ID", "Domain_ID", "Cell_ID", "Device_ID", "IMEI", "IPv4", "IPv6", "FQDN")
-                                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}');"""
+                pgCur.execute("""INSERT INTO current("startTime", "dnsId", "domainId", "cellId", "deviceId", "imei", "ipv4", "ipv6", "sliceId", "fqdn")
+                                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}', '{}');"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                       getJson["DNS_ID"],
                                       getJson["Domain_ID"],
@@ -113,10 +116,11 @@ def current():
                                       getJson["IMEI"],
                                       getJson["IPv4"],
                                       getJson["IPv6"],
+                                      getJson["Slice_ID"],
                                       getJson["FQDN"]))
                 pgSql.commit()
-                pgCur.execute("""INSERT INTO history("Start_time", "Previous", "DNS_ID", "Domain_ID", "Cell_ID", "Device_ID", "IMEI", "IPv4", "IPv6", "FQDN")
-                                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}');"""
+                pgCur.execute("""INSERT INTO history("startTime", "previous", "dnsId", "domainId", "cellId", "deviceId", "imei", "ipv4", "ipv6", "sliceId", "fqdn")
+                                    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}', '{}');"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                       "New Connection",
                                       getJson["DNS_ID"],
@@ -126,6 +130,7 @@ def current():
                                       getJson["IMEI"],
                                       getJson["IPv4"],
                                       getJson["IPv6"],
+                                      getJson["Slice_ID"],
                                       getJson["FQDN"]))
                 pgSql.commit()
             except KeyError as error:
@@ -142,17 +147,17 @@ def current():
         domainId = request.args.get('domainId')
         cellId = request.args.get('cellId')
         if domainId == "" and cellId == "":
-            sql_query = ""
+            sqlQuery = ""
         elif domainId != "":
             if cellId == "":
-                sql_query = """WHERE "Domain_ID" = '{}'""".format(domainId)
+                sqlQuery = """WHERE "domainId" = '{}'""".format(domainId)
             else:
-                sql_query = """WHERE "Domain_ID" = '{}' AND "Cell_ID" = '{}'""".format(
+                sqlQuery = """WHERE "domainId" = '{}' AND "cellId" = '{}'""".format(
                     domainId, cellId)
         else:
-            sql_query = """WHERE "Cell_ID" = '{}'""".format(cellId)
+            sqlQuery = """WHERE "cellId" = '{}'""".format(cellId)
 
-        pgCur.execute("""SELECT * FROM current {};""".format(sql_query))
+        pgCur.execute("""SELECT * FROM "current" {};""".format(sqlQuery))
         sqlData = pgCur.fetchall()
         pgSql.close()
         returnJson["amount"] = len(sqlData)
@@ -168,22 +173,23 @@ def current():
             itemJson["imei"] = raw[5]
             itemJson["ipv4"] = raw[6]
             itemJson["ipv6"] = raw[7]
-            itemJson["fqdn"] = raw[8]
+            itemJson["sliceId"] = raw[8]
+            itemJson["fqdn"] = raw[9]
             returnJson["items"].append(itemJson)
 
         return json.dumps(returnJson), status.HTTP_200_OK
     elif request.method == 'DELETE':
         imei = request.args.get("IMEI")
         pgCur.execute(
-            """SELECT * FROM current WHERE "IMEI" = '{}'""".format(imei))
+            """SELECT * FROM "current" WHERE "imei" = '{}'""".format(imei))
         sqlData = pgCur.fetchall()
 
         if len(sqlData) != 0:
             pgCur.execute(
-                """DELETE FROM current WHERE "IMEI" = '{}'""".format(imei))
+                """DELETE FROM "current" WHERE "imei" = '{}'""".format(imei))
             pgSql.commit()
 
-            pgCur.execute("""UPDATE history SET "End_time" = '{}', "Next" = '{}' WHERE "Start_time" = '{}';"""
+            pgCur.execute("""UPDATE "history" SET "endTime" = '{}', "next" = '{}' WHERE "startTime" = '{}';"""
                           .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                   "Get offline",
                                   sqlData[0][0]))
@@ -207,7 +213,7 @@ def callFlow():
     if request.method == 'POST':
         getJson = request.json
         try:
-            pgCur.execute("""INSERT INTO call_flow("Datetime", "Type", "Payload") 
+            pgCur.execute("""INSERT INTO "callFlow"("datetime", "type", "payload") 
                                 VALUES('{}', '{}', '{}');"""
                           .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                   getJson["Type"],
@@ -225,7 +231,7 @@ def callFlow():
     elif request.method == 'GET':
         startTime = request.args.get('startTime')
         endTime = request.args.get('endTime')
-        pgCur.execute("""SELECT * FROM call_flow WHERE "Datetime" BETWEEN '{}' AND '{}' ORDER BY "Datetime" ASC;"""
+        pgCur.execute("""SELECT * FROM "callFlow" WHERE "datetime" BETWEEN '{}' AND '{}' ORDER BY "datetime" ASC;"""
                       .format(datetime.datetime.strptime(startTime, "%Y-%m-%dT%H:%M%z"),
                               datetime.datetime.strptime(endTime, "%Y-%m-%dT%H:%M%z")))
         sqlData = pgCur.fetchall()
@@ -251,7 +257,7 @@ def systemLog():
     if request.method == 'POST':
         getJson = request.json
         try:
-            pgCur.execute("""INSERT INTO system_log("Datetime", "DNS_env_info", "DNS_ID", "CPU_Usage", "Memory_Usage", "Disk_Usage") 
+            pgCur.execute("""INSERT INTO "systemLog"("datetime", "dnsEnvInfo", "dnsId", "cpuUsage", "memoryUsage", "diskUsage") 
                                 VALUES('{}', '{}', '{}', {}, {}, {});"""
                           .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                   getJson["DNS_env_info"],
@@ -272,7 +278,7 @@ def systemLog():
     elif request.method == 'GET':
         startTimr = request.args.get('startTime')
         endTime = request.args.get('endTime')
-        pgCur.execute("""SELECT * FROM system_log WHERE "Datetime" BETWEEN '{}' AND '{}' ORDER BY "Datetime" ASC;"""
+        pgCur.execute("""SELECT * FROM "systemLog" WHERE "datetime" BETWEEN '{}' AND '{}' ORDER BY "datetime" ASC;"""
                       .format(datetime.datetime.strptime(startTimr, "%Y-%m-%dT%H:%M%z"),
                               datetime.datetime.strptime(endTime, "%Y-%m-%dT%H:%M%z")))
         sqlData = pgCur.fetchall()
@@ -297,7 +303,7 @@ def getDeviceId():
     pgSql = psycopg2.connect(database=config['database']['database'], host=config['database']['host'],
                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
     pgCur = pgSql.cursor()
-    pgCur.execute("""SELECT DISTINCT "Device_ID" FROM "history";""")
+    pgCur.execute("""SELECT DISTINCT "deviceId" FROM "history";""")
     sqlData = pgCur.fetchall()
     pgSql.close()
     returnJson = {}
@@ -319,23 +325,23 @@ def history():
     cellId = request.args.get('cellId')
     deviceId = request.args.get('deviceId')
     if cellId == "" and deviceId == "":
-        pgCur.execute("""SELECT * FROM history WHERE "Start_time" > '{}' AND "End_time" < '{}' ORDER BY "Start_time" ASC;"""
+        pgCur.execute("""SELECT * FROM "history" WHERE "startTime" > '{}' AND "endTime" < '{}' ORDER BY "startTime" ASC;"""
                       .format(datetime.datetime.strptime(startTime, "%Y-%m-%dT%H:%M%z"),
                               datetime.datetime.strptime(endTime, "%Y-%m-%dT%H:%M%z")))
     elif deviceId == "":
-        pgCur.execute("""SELECT * FROM history WHERE "Cell_ID" = '{}' AND "Start_time" > '{}' AND "End_time" < '{}' ORDER BY "Start_time" ASC;"""
+        pgCur.execute("""SELECT * FROM "history" WHERE "cellId" = '{}' AND "startTime" > '{}' AND "endTime" < '{}' ORDER BY "startTime" ASC;"""
                       .format(cellId,
                               datetime.datetime.strptime(
                                   startTime, "%Y-%m-%dT%H:%M%z"),
                               datetime.datetime.strptime(endTime, "%Y-%m-%dT%H:%M%z")))
     elif cellId == "":
-        pgCur.execute("""SELECT * FROM history WHERE "Device_ID" = '{}' AND "Start_time" > '{}' AND "End_time" < '{}' ORDER BY "Start_time" ASC;"""
+        pgCur.execute("""SELECT * FROM "history" WHERE "deviceId" = '{}' AND "startTime" > '{}' AND "endTime" < '{}' ORDER BY "startTime" ASC;"""
                       .format(deviceId,
                               datetime.datetime.strptime(
                                   startTime, "%Y-%m-%dT%H:%M%z"),
                               datetime.datetime.strptime(endTime, "%Y-%m-%dT%H:%M%z")))
     else:
-        pgCur.execute("""SELECT * FROM history WHERE "Cell_ID" = '{}' AND "Device_ID" = '{}' AND "Start_time" > '{}' AND "End_time" < '{}' ORDER BY "Start_time" ASC;"""
+        pgCur.execute("""SELECT * FROM "history" WHERE "cellId" = '{}' AND "deviceId" = '{}' AND "startTime" > '{}' AND "endTime" < '{}' ORDER BY "startTime" ASC;"""
                       .format(cellId,
                               deviceId,
                               datetime.datetime.strptime(
@@ -361,7 +367,8 @@ def history():
         itemJson["imei"] = raw[8]
         itemJson["ipv4"] = raw[9]
         itemJson["ipv6"] = raw[10]
-        itemJson["fqdn"] = raw[11]
+        itemJson["sliceId"] = raw[11]
+        itemJson["fqdn"] = raw[12]
         returnJson["items"].append(itemJson)
     return json.dumps(returnJson), status.HTTP_200_OK
 
@@ -372,13 +379,13 @@ def getCellAmount():
                              user=config['database']['user'], password=config['database']['password'], port=config['database']['port'])
     pgCur = pgSql.cursor()
     returnJson = {}
-    pgCur.execute("""SELECT * FROM current WHERE "Cell_ID" = 'Cell_1'""")
+    pgCur.execute("""SELECT * FROM "current" WHERE "cellId" = 'Cell_1'""")
     sqlData = pgCur.fetchall()
     returnJson["cellOne"] = len(sqlData)
-    pgCur.execute("""SELECT * FROM current WHERE "Cell_ID" = 'Cell_2'""")
+    pgCur.execute("""SELECT * FROM "current" WHERE "cellId" = 'Cell_2'""")
     sqlData = pgCur.fetchall()
     returnJson["cellTwo"] = len(sqlData)
-    pgCur.execute("""SELECT * FROM current WHERE "Cell_ID" = 'Cell_3'""")
+    pgCur.execute("""SELECT * FROM "current" WHERE "cellId" = 'Cell_3'""")
     sqlData = pgCur.fetchall()
     returnJson["cellThree"] = len(sqlData)
     pgSql.close()

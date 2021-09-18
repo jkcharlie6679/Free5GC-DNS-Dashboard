@@ -68,25 +68,28 @@ $(document).ready(function () {
                     <img src="./images/IoT.png" alt="IoT Device">
                 </div>
                 <div class="info">
-                    <p id="index">
+                    <p>
                         index: 
                     </p>
-                    <p id="online">
+                    <p>
                         offline
                     </p>
-                    <p id="Device_ID">
-                        Device_ID: 
+                    <p>
+                        Device ID: 
                     </p>
-                    <p id="IMEI">
+                    <p>
                         IMEI: 
                     </p>
-                    <p id="IPv4">
+                    <p>
                         IPv4: 
                     </p>
-                    <p id="IPv6">
+                    <p>
                         IPv6: 
                     </p>
-                    <p id="FQDN">
+                    <p>
+                        Slice ID: 
+                    </p>
+                    <p>
                         FQDN: 
                     </p>
                 </div>
@@ -98,25 +101,28 @@ $(document).ready(function () {
                                         <img src="./images/IoT.png" alt="IoT Device">
                                     </div>
                                     <div class="info">
-                                        <p id="index">
+                                        <p>
                                             index: ${index + 1}
                                         </p>
-                                        <p id="online" style="color: green">
+                                        <p style="color: green">
                                             online
                                         </p>
-                                        <p id="Device_ID">
-                                            Device_ID: ${value.deviceId}
+                                        <p>
+                                            Device ID: ${value.deviceId}
                                         </p>
-                                        <p id="IMEI">
+                                        <p>
                                             IMEI: ${value.imei}
                                         </p>
-                                        <p id="IPv4">
+                                        <p>
                                             IPv4: ${value.ipv4}
                                         </p>
-                                        <p id="IPv6">
+                                        <p>
                                             IPv6: ${value.ipv6}
                                         </p>
-                                        <p id="FQDN">
+                                        <p>
+                                            Slice ID: ${value.sliceId}
+                                        </p>
+                                        <p>
                                             FQDN: ${value.fqdn}
                                         </p>
                                     </div>
