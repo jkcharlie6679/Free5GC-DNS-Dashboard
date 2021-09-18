@@ -394,11 +394,10 @@ def getCellAmount():
 
 @app.route('/dns', methods=['GET', 'POST', 'DELETE'])
 def dns():
-    if request.method != "GET":
-        ip = request.args["IP"]
-        domain = request.args["Domain"]
     returnJson = {}
     if request.method == "POST":
+        ip = request.args["ip"]
+        domain = request.args["domain"]
         with open(config['DNS']['FILE'], "r") as configFile:
             lines = configFile.readlines()
             for line in lines:
@@ -447,6 +446,7 @@ def dns():
         else:
             return json.dumps(returnJson), status.HTTP_200_OK
     elif request.method == "DELETE":
+        ip = request.args["ip"]
         with open(config['DNS']['FILE'], "r") as configFile:
             lines = configFile.readlines()
             for line in lines:
@@ -496,7 +496,7 @@ def dns():
             for line in lines[start_line:]:
                 itemJson = {}
                 filter_start = line.index(filterWord)
-                itemJson["Domain"] = line[:filter_start]+".free5gc"
+                itemJson["domain"] = line[:filter_start]+".free5gc"
                 itemJson["ip"] = line.replace(";\n", "")[filter_start+6:]
                 returnJson["items"].append(itemJson)
 
