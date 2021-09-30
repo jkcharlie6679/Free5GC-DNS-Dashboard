@@ -41,11 +41,19 @@ def current():
     pgCur = pgSql.cursor()
     returnJson = {}
     if request.method == 'POST':
-        getJson = request.json
+        dnsId = request.args.get("dnsId")
+        domainId = request.args.get("domainId")
+        cellId = request.args.get("cellId")
+        deviceId = request.args.get("deviceId")
+        imei = request.args.get("imei")
+        ipv4 = request.args.get("ipv4")
+        ipv6 = request.args.get("ipv6")
+        sliceId = request.args.get("sliceId")
+        fqdn = request.args.get("fqdn")
 
         try:
             pgCur.execute(
-                """SELECT * FROM "current" WHERE "imei" = '{}'""".format(getJson["IMEI"]))
+                """SELECT * FROM "current" WHERE "imei" = '{}'""".format(imei))
         except KeyError as error:
             pgSql.close()
             returnJson["parameter"] = str(error).replace("'", '')
@@ -65,35 +73,35 @@ def current():
                                                     "sliceId" = '{}',
                                                     "fqdn" = '{}' WHERE "imei" = '{}';"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
-                                      getJson["DNS_ID"],
-                                      getJson["Domain_ID"],
-                                      getJson["Cell_ID"],
-                                      getJson["Device_ID"],
-                                      getJson["IMEI"],
-                                      getJson["IPv4"],
-                                      getJson["IPv6"],
-                                      getJson["Slice_ID"],
-                                      getJson["FQDN"],
-                                      getJson["IMEI"]))
+                                      dnsId,
+                                      deviceId,
+                                      cellId,
+                                      deviceId,
+                                      imei,
+                                      ipv4,
+                                      ipv6,
+                                      sliceId,
+                                      fqdn,
+                                      imei))
                 pgSql.commit()
                 pgCur.execute("""UPDATE "history" SET "endTime" = '{}', "next" = '{}' WHERE "startTime" = '{}';"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
-                                      "Hand off to " + getJson["Cell_ID"],
+                                      "Hand off to " + cellId,
                                       sqlData[0][0]))
                 pgSql.commit()
                 pgCur.execute("""INSERT INTO "history"("startTime", "previous", "dnsId", "domainId", "cellId", "deviceId", "imei", "ipv4", "ipv6", "sliceId", "fqdn")
                                     VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}', '{}');"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                       "Hand off from " + sqlData[0][3],
-                                      getJson["DNS_ID"],
-                                      getJson["Domain_ID"],
-                                      getJson["Cell_ID"],
-                                      getJson["Device_ID"],
-                                      getJson["IMEI"],
-                                      getJson["IPv4"],
-                                      getJson["IPv6"],
-                                      getJson["Slice_ID"],
-                                      getJson["FQDN"]))
+                                      dnsId,
+                                      deviceId,
+                                      cellId,
+                                      deviceId,
+                                      imei,
+                                      ipv4,
+                                      ipv6,
+                                      sliceId,
+                                      fqdn))
                 pgSql.commit()
             except KeyError as error:
                 pgSql.close()
@@ -109,29 +117,29 @@ def current():
                 pgCur.execute("""INSERT INTO current("startTime", "dnsId", "domainId", "cellId", "deviceId", "imei", "ipv4", "ipv6", "sliceId", "fqdn")
                                     VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}', '{}');"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
-                                      getJson["DNS_ID"],
-                                      getJson["Domain_ID"],
-                                      getJson["Cell_ID"],
-                                      getJson["Device_ID"],
-                                      getJson["IMEI"],
-                                      getJson["IPv4"],
-                                      getJson["IPv6"],
-                                      getJson["Slice_ID"],
-                                      getJson["FQDN"]))
+                                      dnsId,
+                                      deviceId,
+                                      cellId,
+                                      deviceId,
+                                      imei,
+                                      ipv4,
+                                      ipv6,
+                                      sliceId,
+                                      fqdn))
                 pgSql.commit()
                 pgCur.execute("""INSERT INTO history("startTime", "previous", "dnsId", "domainId", "cellId", "deviceId", "imei", "ipv4", "ipv6", "sliceId", "fqdn")
                                     VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}' ,'{}' ,'{}', '{}');"""
                               .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
                                       "New Connection",
-                                      getJson["DNS_ID"],
-                                      getJson["Domain_ID"],
-                                      getJson["Cell_ID"],
-                                      getJson["Device_ID"],
-                                      getJson["IMEI"],
-                                      getJson["IPv4"],
-                                      getJson["IPv6"],
-                                      getJson["Slice_ID"],
-                                      getJson["FQDN"]))
+                                      dnsId,
+                                      deviceId,
+                                      cellId,
+                                      deviceId,
+                                      imei,
+                                      ipv4,
+                                      ipv6,
+                                      sliceId,
+                                      fqdn))
                 pgSql.commit()
             except KeyError as error:
                 pgSql.close()
