@@ -219,13 +219,14 @@ def callFlow():
     pgCur = pgSql.cursor()
     returnJson = {}
     if request.method == 'POST':
-        getJson = request.json
+        type = request.args.get("type")
+        payload = request.args.get("payload")
         try:
             pgCur.execute("""INSERT INTO "callFlow"("datetime", "type", "payload") 
                                 VALUES('{}', '{}', '{}');"""
                           .format(datetime.datetime.now().replace(microsecond=0).astimezone().isoformat(),
-                                  getJson["Type"],
-                                  getJson["Payload"]))
+                                  type,
+                                  payload))
         except KeyError as error:
             pgSql.close()
             returnJson["parameter"] = str(error).replace("'", '')
