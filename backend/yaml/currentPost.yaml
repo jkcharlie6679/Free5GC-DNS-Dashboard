@@ -1,0 +1,82 @@
+tags:
+  - Current page
+description: Upload the UE information
+parameters:
+  - in: query
+    name: dnsId
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: domainId
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: cellId
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: deviceId
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: imei
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: ipv4
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: ipv6
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: sliceId
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: fqdn
+    required: true
+    schema:
+      type: string
+responses:
+  200:
+    description: Update the information about UE successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+        examples:
+          Create:
+            value:
+              message: Create successfully
+          Update:
+            value:
+              message: Update successfully
+  400:
+    description: Missing the parameter.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            parameter:
+              type: string
+            message:
+              type: string
+        examples:
+          Error:
+            value:
+              parameter: Ipv6
+              message: Missing Ipv6

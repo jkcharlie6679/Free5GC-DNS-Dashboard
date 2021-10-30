@@ -1,0 +1,23 @@
+tags:
+  - dns
+description: Delete the domain about UE
+parameters:
+  - in: query
+    name: ip
+    required: true
+    schema:
+      type: string
+responses:
+  200:
+    description: Delete the domain about UE successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+        examples:
+          example:
+            value:
+              message: Delete successfully

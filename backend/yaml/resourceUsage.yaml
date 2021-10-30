@@ -1,0 +1,35 @@
+tags:
+  - All page
+description: Get resource usage
+responses:
+  200:
+    description: Get resource usage successfully
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              dnsId:
+                type: string
+              cpuUsage:
+                type: number
+                format: float
+              diskUsage:
+                type: number
+                format: float
+              memoryUsage:
+                type: number
+                format: float
+        examples:
+          example:
+            value:
+              - dnsId: DNS_1
+                cpuUsage: 33.5
+                diskUsage: 18.6
+                memoryUsage: 48.9
+              - dnsId: DNS_2
+                cpuUsage: 33.5
+                diskUsage: 18.6
+                memoryUsage: 48.9

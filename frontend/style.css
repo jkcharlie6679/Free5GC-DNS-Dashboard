@@ -1,251 +1,252 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 .wrapper {
-    position: absolute;
-    padding: 60px 0 30px 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 100%;
+  position: absolute;
+  padding: 60px 0 30px 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 100%;
 }
 
 /* Header */
 
 header {
-    position: absolute;
-    width: 100%;
-    background-color: #c6d9f0;
-    display: flex;
-    height: 60px;
-    margin-top: -60px;
+  position: absolute;
+  width: 100%;
+  background-color: #c6d9f0;
+  display: flex;
+  height: 60px;
+  margin-top: -60px;
 }
 
 .logo {
-    width: 250px;
+  width: 250px;
 }
 
 .logo a {
-    position: relative;
-    display: inline-block;
-    margin: 5px 25px;
-    width: 200px;
+  position: relative;
+  display: inline-block;
+  margin: 5px 25px;
+  width: 200px;
 }
 
 .logo img {
-    vertical-align: middle;
-    height: 50px;
+  vertical-align: middle;
+  height: 50px;
 }
 
 header .dnsStatus {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
 }
 
 header .dnsStatus .row {
-    display: flex;
-    margin-top: 4px;
+  display: flex;
+  margin-top: 4px;
 }
 
 header .dnsStatus .col {
-    padding-top: 5px;
-    display: flex;
-    width: 25%;
+  padding-top: 5px;
+  display: flex;
+  width: 25%;
 }
 
 /* Container*/
 
 .container {
-    display: flex;
-    height: 100%;
+  display: flex;
+  height: 100%;
 }
 
 /* Sidebar */
 
 #currentState {
-    background-color: #c7d9f1;
+  background-color: #c7d9f1;
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 30px 20px;
-    width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 20px;
+  width: 250px;
+  background-color: #f0f2ff;
 }
 
 .sidebar button {
-    border: 1px solid #aaa;
-    height: 33.333%;
-    font-size: 28px;
-    white-space: nowrap;
-    color: #000;
-    /* padding: 0 40px; */
+  border: 1px solid #aaa;
+  height: 33.333%;
+  font-size: 28px;
+  white-space: nowrap;
+  color: #000;
+  /* padding: 0 40px; */
 }
 
 /* Main */
 
 .main {
-    flex-grow: 1;
-    background-color: #eff2f5;
-    display: flex;
-    flex-direction: column;
+  flex-grow: 1;
+  background-color: #eff2f5;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Main img */
 
 .main .img {
-    height: 20%;
+  height: 20%;
 }
 
 .main .img img {
-    display: block;
-    height: 100%;
-    margin: 0 auto;
-    padding-top: 20px;
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
 /* Main data */
 
 .main .data {
-    display: flex;
-    flex-grow: 1;
-    height: 80%;
+  display: flex;
+  flex-grow: 1;
+  height: 80%;
 }
 
 .main .row {
-    width: 50%;
-    padding: 20px;
+  width: 50%;
+  padding: 20px;
 }
 
 /* Main cell */
 
 .main .cell {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .main .cell .domain {
-    height: 50%;
-    padding: 20px;
+  height: 50%;
+  padding: 20px;
 }
 
 .main .cell .title {
-    color: #000;
-    text-align: center;
-    padding: 10px;
-    background-color: #b3c8e4;
-    font-size: 20px;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  background-color: #b3c8e4;
+  font-size: 20px;
 }
 
 .main .cell .list table {
-    margin: 10px 0;
-    width: 100%;
-    font-size: 20px;
+  margin: 10px 0;
+  width: 100%;
+  font-size: 20px;
 }
 
 .main .cell .list button {
-    background-color: #b2c4e1;
-    border: 1px solid #aaa;
-    border-radius: 5px;
+  background-color: #b2c4e1;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
 .main .cell .list td,
 th {
-    text-align: center;
-    padding: 5px;
-    border: 1px solid #aaa;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #aaa;
 }
 
 .main .cell .list img {
-    height: 15px;
+  height: 15px;
 }
 
 /* Main User */
 
 .main .user {
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .main .user .title {
-    color: #000;
-    text-align: center;
-    font-size: 20px;
-    padding: 10px;
-    background-color: #b3c8e4;
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  background-color: #b3c8e4;
 }
 
 .main .user .status {
-    display: inline-block;
-    padding: 10px;
-    background-color: #f0f4f9;
-    display: flex;
-    font-size: 20px;
-    justify-content: space-evenly;
+  display: inline-block;
+  padding: 10px;
+  background-color: #f0f4f9;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-evenly;
 }
 
 .main .user .list {
-    padding: 20px;
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
+  padding: 20px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
 }
 
 .main .user .list .iotData {
-    display: flex;
-    padding: 20px;
-    overflow-x: visible;
-    border: 1px solid #000;
-    margin: 5px 0;
-    width: auto;
+  display: flex;
+  padding: 20px;
+  overflow-x: visible;
+  border: 1px solid #000;
+  margin: 5px 0;
+  width: auto;
 }
 
 .main .user .list .iotData .img {
-    width: 100px;
-    height: auto;
-    margin: auto;
+  width: 100px;
+  height: auto;
+  margin: auto;
 }
 
 .main .user .list .iotData .img img {
-    display: block;
-    width: 80%;
-    height: auto;
-    padding: 0 10px 0 0;
+  display: block;
+  width: 80%;
+  height: auto;
+  padding: 0 10px 0 0;
 }
 
 .main .user .list .iotData .info {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .main .user .list .iotData .info p {
-    font-size: 16px;
-    border-bottom: 1px solid #000;
-    padding: 5px;
-    word-break: break-all;
+  font-size: 16px;
+  border-bottom: 1px solid #000;
+  padding: 5px;
+  word-break: break-all;
 }
 
 /* Footer */
 
 .footer {
-    position: absolute;
-    width: 100%;
-    background-color: #cfdbec;
-    height: 30px;
-    margin-bottom: -30px;
-    font-size: 18px;
-    padding: 5px;
+  position: absolute;
+  width: 100%;
+  background-color: #cfdbec;
+  height: 30px;
+  margin-bottom: -30px;
+  font-size: 18px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 768px) {

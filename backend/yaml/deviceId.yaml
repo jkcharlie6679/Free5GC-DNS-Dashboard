@@ -1,0 +1,21 @@
+tags:
+  - History page
+description: Get device ID
+responses:
+  200:
+    description: Get device ID successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            deviceId:
+              type: array
+              items:
+                type: string
+        examples:
+          example:
+            value:
+              deviceId:
+                - IoT_1
+                - IoT_2

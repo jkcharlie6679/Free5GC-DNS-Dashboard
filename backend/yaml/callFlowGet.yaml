@@ -1,0 +1,43 @@
+tags:
+  - Call flow page
+description: Get call flow log
+parameters:
+  - in: query
+    name: startTime
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: endTime
+    required: true
+    schema:
+      type: string
+responses:
+  200:
+    description: Get call flow log successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amout:
+              type: integer
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  datetime:
+                    type: string
+                  payload:
+                    type: string
+                  type:
+                    type: string
+        examples:
+          example:
+            value:
+              amount: 1
+              items:
+                - datetime: "2021-09-19 02:25:38"
+                  payload: Device_355979860003363 is aetached
+                  type: INFO

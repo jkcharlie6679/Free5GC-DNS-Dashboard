@@ -1,0 +1,29 @@
+tags:
+  - dns
+description: Get domain and ip address
+responses:
+  200:
+    description: Get domain and ip address successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amout:
+              type: integer
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  domain:
+                    type: string
+                  ip:
+                    type: string
+        examples:
+          example:
+            value:
+              amount: 1
+              items:
+                - domain: "dns.test.free5gc"
+                  ip: 10.0.0.1

@@ -1,0 +1,23 @@
+tags:
+  - Current page
+description: Get Cell Amount
+responses:
+  200:
+    description: Update the information about UE successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cellOne:
+              type: integer
+            cellTwo:
+              type: integer
+            cellThree:
+              type: integer
+        examples:
+          example:
+            value:
+              cellOne: 1
+              cellTwo: 1
+              cellThree: 1

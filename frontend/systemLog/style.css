@@ -1,204 +1,205 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 .wrapper {
-    position: absolute;
-    padding: 60px 0 30px 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 100%;
+  position: absolute;
+  padding: 60px 0 30px 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 100%;
 }
 
 /* Header */
 
 header {
-    position: absolute;
-    width: 100%;
-    background-color: #c6d9f0;
-    display: flex;
-    height: 60px;
-    margin-top: -60px;
+  position: absolute;
+  width: 100%;
+  background-color: #c6d9f0;
+  display: flex;
+  height: 60px;
+  margin-top: -60px;
 }
 
 .logo {
-    width: 250px;
+  width: 250px;
 }
 
 .logo a {
-    position: relative;
-    display: inline-block;
-    margin: 5px 25px;
-    width: 200px;
+  position: relative;
+  display: inline-block;
+  margin: 5px 25px;
+  width: 200px;
 }
 
 .logo img {
-    vertical-align: middle;
-    height: 50px;
+  vertical-align: middle;
+  height: 50px;
 }
 
 header .dnsStatus {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
 }
 
 header .dnsStatus .row {
-    display: flex;
-    margin-top: 4px;
+  display: flex;
+  margin-top: 4px;
 }
 
 header .dnsStatus .col {
-    padding-top: 5px;
-    display: flex;
-    width: 25%;
+  padding-top: 5px;
+  display: flex;
+  width: 25%;
 }
 
 /* Container*/
 
 .container {
-    display: flex;
-    height: 100%;
+  display: flex;
+  height: 100%;
 }
 
 /* Sidebar */
 
 #systemLog {
-    background-color: #c7d9f1;
+  background-color: #c7d9f1;
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 30px 20px;
-    width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 20px;
+  width: 250px;
+  background-color: #f0f2ff;
 }
 
 .sidebar button {
-    border: 1px solid #aaa;
-    height: 33.333%;
-    font-size: 28px;
-    white-space: nowrap;
-    color: #000;
-    /* padding: 0 40px; */
+  border: 1px solid #aaa;
+  height: 33.333%;
+  font-size: 28px;
+  white-space: nowrap;
+  color: #000;
+  /* padding: 0 40px; */
 }
 
 /* Main */
 
 .main {
-    flex-grow: 1;
-    background-color: #eff2f5;
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    overflow-x: hidden;
+  flex-grow: 1;
+  background-color: #eff2f5;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  overflow-x: hidden;
 }
 
 /* Select Bar */
 
 .main .option {
-    background-color: #eff2f5;
-    display: flex;
-    justify-content: space-evenly;
-    color: #000;
-    font-size: 20px;
-    padding: 10px;
+  background-color: #eff2f5;
+  display: flex;
+  justify-content: space-evenly;
+  color: #000;
+  font-size: 20px;
+  padding: 10px;
 }
 
 .main .option .btn {
-    background-color: #fff;
-    border: none;
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 24px;
+  background-color: #fff;
+  border: none;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 24px;
 }
 
 .main .option .time {
-    align-self: center;
+  align-self: center;
 }
 
 .main .option img {
-    width: 30px;
-    padding: 2px;
+  width: 30px;
+  padding: 2px;
 }
 
 .main .option .searchBtn {
-    align-self: center;
+  align-self: center;
 }
 
 .main .option .download {
-    align-self: center;
+  align-self: center;
 }
 
 .main .option #download {
-    display: none;
+  display: none;
 }
 
 .main .title {
-    background-color: #b3c8e4;
-    text-align: center;
-    padding: 10px;
-    font-size: 32px;
+  background-color: #b3c8e4;
+  text-align: center;
+  padding: 10px;
+  font-size: 32px;
 }
 
 .main .table {
-    padding: 10px 0;
-    flex-grow: 1;
-    margin: 0 20px;
-    overflow: scroll;
-    font-size: 20px;
+  padding: 10px 0;
+  flex-grow: 1;
+  margin: 0 20px;
+  overflow: scroll;
+  font-size: 20px;
 }
 
 .main .table table {
-    width: 100%;
+  width: 100%;
 }
 
 .main .table th,
 td {
-    white-space: nowrap;
-    padding: 5px 10px;
-    border: 1px solid #aaa;
-    text-align: center;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border: 1px solid #aaa;
+  text-align: center;
 }
 
 /* Page */
 
 .main .page {
-    margin-top: 10px;
-    display: flex;
-    justify-content: flex-end;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .paginationjs.custom-paginationjs .paginationjs-pages li > a {
-    min-width: 36px;
-    height: 34px;
-    line-height: 34px;
-    font-size: 20px;
+  min-width: 36px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 20px;
 }
 
 .paginationjs.custom-paginationjs .paginationjs-pages li.active > a {
-    height: 36px;
-    line-height: 36px;
+  height: 36px;
+  line-height: 36px;
 }
 
 /* Footer */
 .footer {
-    position: absolute;
-    width: 100%;
-    background-color: #cfdbec;
-    height: 30px;
-    margin-bottom: -30px;
-    font-size: 18px;
-    padding: 5px;
+  position: absolute;
+  width: 100%;
+  background-color: #cfdbec;
+  height: 30px;
+  margin-bottom: -30px;
+  font-size: 18px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 768px) {

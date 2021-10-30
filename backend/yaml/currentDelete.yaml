@@ -1,0 +1,23 @@
+tags:
+  - Current page
+description: Get Resource Usage
+parameters:
+  - in: query
+    name: imei
+    required: true
+    schema:
+      type: string
+responses:
+  200:
+    description: Delete successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+        examples:
+          example:
+            value:
+              message: Delete successfully

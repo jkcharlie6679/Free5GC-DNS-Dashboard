@@ -1,0 +1,62 @@
+tags:
+  - Current page
+description: Get the information about UE
+parameters:
+  - in: query
+    name: domainId
+    schema:
+      type: string
+  - in: query
+    name: cellId
+    schema:
+      type: string
+responses:
+  200:
+    description: Get the information about UE successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amout:
+              type: integer
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  datetime:
+                    type: string
+                  cellId:
+                    type: string
+                  deviceId:
+                    type: string
+                  dnsId:
+                    type: string
+                  domainId:
+                    type: string
+                  fqdn:
+                    type: string
+                  imei:
+                    type: string
+                  ipv4:
+                    type: string
+                  ipv6:
+                    type: string
+                  sliceId:
+                    type: string
+        examples:
+          Create:
+            value:
+              amount: 1
+              items:
+                - datetime: "2021-09-19 02:25:38"
+                  cellId: Cell_2
+                  deviceId: IoT_1
+                  dnsId: DNS_1
+                  domainId: Domain_1
+                  fqdn: Test
+                  imei: "990000862471854"
+                  ipv4: 10.10.0.1
+                  ipv6: :::10.10.0.1
+                  sliceId: slice id

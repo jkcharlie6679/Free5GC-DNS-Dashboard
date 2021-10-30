@@ -1,0 +1,45 @@
+tags:
+  - System log page
+description: Upload System log
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          dnsId:
+            type: string
+          dnsEnvInfo:
+            type: string
+          cpuUsage:
+            type: number
+            format: float
+          diskUsage:
+            type: number
+            format: float
+          memoryUsage:
+            type: number
+            format: float
+      examples:
+        example:
+          value:
+            dnsId: DNS_1
+            dnsEnvInfo: Ubuntu
+            cpuUsage: 33.5
+            diskUsage: 18.6
+            memoryUsage: 48.9
+responses:
+  200:
+    description: Upload system log successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+        examples:
+          example:
+            value:
+              message: Upload successfully

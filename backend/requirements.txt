@@ -1,5 +1,7 @@
-psycopg2==2.9.1
+# sudo apt install libpq-dev python-dev
+# psycopg2==2.8.4
+# psycopg2-binary==2.9.1
 Flask==2.0.1
-Flask-API==3.0.post1
 Flask-Cors==3.0.10
 psutil==5.8.0
+flasgger==0.9.5

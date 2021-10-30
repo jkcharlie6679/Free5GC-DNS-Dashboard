@@ -1,0 +1,28 @@
+tags:
+  - Call flow page
+description: Post call flow log
+parameters:
+  - in: query
+    name: type
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: payload
+    required: true
+    schema:
+      type: string
+responses:
+  200:
+    description: Upload call flow log successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+        examples:
+          example:
+            value:
+              message: Upload successfully

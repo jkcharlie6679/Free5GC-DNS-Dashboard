@@ -1,0 +1,31 @@
+tags:
+  - dns
+description: Update the domain about UE
+parameters:
+  - in: query
+    name: ip
+    required: true
+    schema:
+      type: string
+  - in: query
+    name: domain
+    required: true
+    schema:
+      type: string
+responses:
+  200:
+    description: Update the domain about UE successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+        examples:
+          Create:
+            value:
+              message: Create successfully
+          Update:
+            value:
+              message: Update successfully
