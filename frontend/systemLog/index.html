@@ -1,123 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/resetcss.css" />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="/systemLog/style.css" />
-        <title>Dashboard</title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/resetcss.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/systemLog/style.css" />
+    <title>Dashboard</title>
+  </head>
 
-    <body>
-        <div class="wrapper">
-            <header>
-                <div class="logo">
-                    <a href="/index.html">
-                        <img src="/images/TTC-logo.jpg" alt="logo" />
-                    </a>
-                </div>
-                <div class="dnsStatus">
-                    <div class="row">
-                        <div class="col">
-                            DNS ID:&nbsp;
-                            <p id="dnsIdOne"></p>
-                        </div>
-                        <div class="col">
-                            CPU Usage:&nbsp;
-                            <p id="dnsCpuOne"></p>
-                        </div>
-                        <div class="col">
-                            Memory Usage:&nbsp;
-                            <p id="dnsMemoryOne"></p>
-                        </div>
-                        <div class="col">
-                            Disk Space:&nbsp;
-                            <p id="dnsDiskOne"></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            DNS ID:&nbsp;
-                            <p id="dnsIdTwo"></p>
-                        </div>
-                        <div class="col">
-                            CPU Usage:&nbsp;
-                            <p id="dnsCpuTwo"></p>
-                        </div>
-                        <div class="col">
-                            Memory Usage:&nbsp;
-                            <p id="dnsMemoryTwo"></p>
-                        </div>
-                        <div class="col">
-                            Disk Space:&nbsp;
-                            <p id="dnsDiskTwo"></p>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <div class="container">
-                <div class="sidebar">
-                    <button
-                        id="currentState"
-                        onclick="location.href='/index.html'"
-                    >
-                        Current State
-                    </button>
-                    <button
-                        id="historyState"
-                        onclick="location.href='/historyState/'"
-                    >
-                        History State
-                    </button>
-                    <button id="systemLog" onclick="location.href='/systemLog'">
-                        System Log
-                    </button>
-                </div>
-                <div class="main">
-                    <div class="option">
-                        <div>
-                            <button class="btn" id="callFlowBtn">
-                                DNS Call Flow
-                            </button>
-                            <button class="btn" id="systemLogBtn">
-                                System Log
-                            </button>
-                        </div>
-                        <div class="time">
-                            <input id="startTime" type="datetime-local" />
-                            <input id="endTime" type="datetime-local" />
-                        </div>
-                        <div class="searchBtn">
-                            <button id="searchBtn">
-                                <img src="/images/search.png" alt="search" />
-                            </button>
-                        </div>
-                        <div class="download">
-                            <a id="download">download</a>
-                        </div>
-                    </div>
-                    <div class="title">Log</div>
-                    <div class="table">
-                        <table>
-                            <thead id="thead"></thead>
-                            <tbody id="tbody"></tbody>
-                        </table>
-                    </div>
-                    <div class="row page" id="page"></div>
-                </div>
-            </div>
-
-            <div class="footer">CopyRigrt 2021</div>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-            <script src="/systemLog/script.js"></script>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="logo">
+          <a href="/index.html">
+            <img src="/images/TTC-logo.jpg" alt="logo" />
+          </a>
         </div>
-    </body>
+        <div class="dnsStatus">
+          <div class="row">
+            <div class="col">
+              DNS ID:&nbsp;
+              <p id="dnsIdOne"></p>
+            </div>
+            <div class="col">
+              CPU Usage:&nbsp;
+              <p id="dnsCpuOne"></p>
+            </div>
+            <div class="col">
+              Memory Usage:&nbsp;
+              <p id="dnsMemoryOne"></p>
+            </div>
+            <div class="col">
+              Disk Space:&nbsp;
+              <p id="dnsDiskOne"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              DNS ID:&nbsp;
+              <p id="dnsIdTwo"></p>
+            </div>
+            <div class="col">
+              CPU Usage:&nbsp;
+              <p id="dnsCpuTwo"></p>
+            </div>
+            <div class="col">
+              Memory Usage:&nbsp;
+              <p id="dnsMemoryTwo"></p>
+            </div>
+            <div class="col">
+              Disk Space:&nbsp;
+              <p id="dnsDiskTwo"></p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="sidebar">
+          <button id="currentState" onclick="location.href='/index.html'">Current State</button>
+          <button id="historyState" onclick="location.href='/historyState/'">History State</button>
+          <button id="systemLog" onclick="location.href='/systemLog'">System Log</button>
+        </div>
+        <div class="main">
+          <div class="option">
+            <div>
+              <button class="btn" id="callFlowBtn">DNS Call Flow</button>
+              <button class="btn" id="systemLogBtn">System Log</button>
+            </div>
+            <div class="time">
+              <input id="startTime" type="datetime-local" />
+              <input id="endTime" type="datetime-local" />
+            </div>
+            <div class="searchBtn">
+              <button id="searchBtn">
+                <img src="/images/search.png" alt="search" />
+              </button>
+            </div>
+            <div class="download">
+              <a id="download">download</a>
+            </div>
+          </div>
+          <div class="title">Log</div>
+          <div class="table">
+            <table>
+              <thead id="thead"></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+          <div class="row page" id="page"></div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>CopyRigrt 2021</p>
+        <div class="userGuide"><a href="/userGuide.html">User Guide</a></div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+    <script src="/systemLog/script.js"></script>
+  </body>
 </html>

@@ -24,3 +24,6 @@ def timeNow():
 
 def timeToString(time):
     return datetime.datetime.strptime(time, "%Y-%m-%dT%H:%M%z")
+
+def stringToTime(string):
+    return str(string.astimezone(timezone8).replace(tzinfo=None))

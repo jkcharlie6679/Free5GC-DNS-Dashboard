@@ -26,9 +26,6 @@ db.query("""CREATE TABLE IF NOT EXISTS "current"(
             "sliceId" TEXT NOT NULL,
             "fqdn" TEXT NOT NULL);""")
 
-
-
-
 db.query("""CREATE TABLE IF NOT EXISTS "history"(
             "startTime" TIMESTAMP WITH TIME ZONE NOT NULL,
             "endTime" TIMESTAMP WITH TIME ZONE,
@@ -44,15 +41,10 @@ db.query("""CREATE TABLE IF NOT EXISTS "history"(
             "sliceId" TEXT NOT NULL,
             "fqdn" TEXT NOT NULL);""")
 
-
-
-
 db.query(""" CREATE TABLE IF NOT EXISTS "callFlow"(
             "datetime" TIMESTAMP WITH TIME ZONE NOT NULL,
             "type" TEXT NOT NULL,
             "payload" TEXT NOT NULL);""")
-
-
 
 db.query("""CREATE TABLE IF NOT EXISTS "systemLog"(
             "datetime" TIMESTAMP WITH TIME ZONE NOT NULL,

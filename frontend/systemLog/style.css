@@ -193,6 +193,8 @@ td {
 
 /* Footer */
 .footer {
+  display: flex;
+  justify-content: space-between;
   position: absolute;
   width: 100%;
   background-color: #cfdbec;
@@ -202,5 +204,6 @@ td {
   padding: 5px;
 }
 
-@media only screen and (max-width: 768px) {
+.footer * {
+  margin: 0 12px;
 }

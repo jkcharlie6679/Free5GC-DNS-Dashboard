@@ -1,7 +1,7 @@
 import json
 import os
 from flask import *
-from utilities import db, dnsFile, timezone8, timeNow, timeToString
+from utilities import db, dnsFile, stringToTime, timeNow, timeToString
 from flasgger import swag_from
 
 api = Blueprint('api', __name__)
@@ -87,7 +87,7 @@ def current():
         }
         for raw in sqlData:
             itemJson = {}
-            itemJson["datetime"] = str(raw[0].astimezone(timezone8).replace(tzinfo=None))
+            itemJson["datetime"] = stringToTime(raw[0])
             itemJson["dnsId"] = raw[1]
             itemJson["domainId"] = raw[2]
             itemJson["cellId"] = raw[3]
@@ -150,7 +150,7 @@ def callFlow():
         for raw in sqlData:
             itemJson = {}
             itemJson["type"] = raw[1]
-            itemJson["datetime"] = str(raw[0].astimezone(timezone8).replace(tzinfo=None))
+            itemJson["datetime"] = stringToTime(raw[0])
             itemJson["payload"] = raw[2]
             returnJson["items"].append(itemJson)
         return Response(response=json.dumps(returnJson), status=200)
@@ -177,10 +177,10 @@ def systemLog():
         return Response(response=json.dumps(returnJson), status=200)
 
     elif request.method == 'GET':
-        startTimr = request.args.get('startTime')
+        startTime = request.args.get('startTime')
         endTime = request.args.get('endTime')
         sqlData = db.query("""SELECT * FROM "systemLog" WHERE "datetime" BETWEEN %s AND %s ORDER BY "datetime" ASC;""",
-                                timeToString(startTimr), timeToString(endTime))
+                                timeToString(startTime), timeToString(endTime))
 
         returnJson = {
             "amount": len(sqlData),
@@ -188,7 +188,7 @@ def systemLog():
         }
         for raw in sqlData:
             itemJson = {}
-            itemJson["datetime"] = str(raw[0].astimezone(timezone8).replace(tzinfo=None))
+            itemJson["datetime"] = stringToTime(raw[0])
             itemJson["dnsEnvInfo"] = raw[1]
             itemJson["dnsId"] = raw[2]
             itemJson["cpuUsage"] = raw[3]
@@ -236,8 +236,8 @@ def history():
 
     for raw in sqlData:
         itemJson = {}
-        itemJson["startTime"] = str(raw[0].astimezone(timezone8).replace(tzinfo=None))
-        itemJson["endTime"] = str(raw[1].astimezone(timezone8).replace(tzinfo=None))
+        itemJson["startTime"] = stringToTime(raw[0])
+        itemJson["endTime"] = stringToTime(raw[1])
         itemJson["previous"] = raw[2]
         itemJson["next"] = raw[3]
         itemJson["dnsId"] = raw[4]
